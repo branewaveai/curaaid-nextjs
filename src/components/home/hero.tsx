@@ -1,64 +1,77 @@
-import { StyledButton } from '@/components/styled-button'
-import PlayArrowIcon from '@mui/icons-material/PlayArrow'
-import { Button, FormControl, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
-import Image from 'next/image'
-import { FC, useState } from 'react'
-import { Link as ScrollLink } from 'react-scroll'
+import { StyledButton } from "@/components/styled-button";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+} from "@mui/material";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import { FC, useState } from "react";
+import { Link as ScrollLink } from "react-scroll";
 // import EnquiryForm from './EnquiryFrom'
 
 interface Exp {
-  label: string
-  value: string
+  label: string;
+  value: string;
 }
 interface ExpItemProps {
-  item: Exp
+  item: Exp;
 }
 
 interface FormData {
-  name: string
-  email: string
-  country: string
-  mobileNumber: string
-  medicalRequirements: string
+  name: string;
+  email: string;
+  country: string;
+  mobileNumber: string;
+  medicalRequirements: string;
+  files: File[];
 }
 
 const countries = [
-  { code: '+91', label: 'India' },
-  { code: '+254', label: 'Kenya' },
-  { code: '+255', label: 'Tanzania' },
-  { code: '+234', label: 'Nigeria' },
-  { code: '+251', label: 'Ethiopia' },
-  { code: '+249', label: 'Sudan' },
-  { code: '+1', label: 'United States' },
+  { code: "+91", label: "India" },
+  { code: "+254", label: "Kenya" },
+  { code: "+255", label: "Tanzania" },
+  { code: "+234", label: "Nigeria" },
+  { code: "+251", label: "Ethiopia" },
+  { code: "+249", label: "Sudan" },
+  { code: "+1", label: "United States" },
 
   // Add more countries as needed
-]
+];
 
 const exps: Array<Exp> = [
   {
-    label: 'Patients served',
-    value: '100+',
+    label: "Patients served",
+    value: "100+",
   },
   {
-    label: 'Treatments Offered',
-    value: '20+',
+    label: "Treatments Offered",
+    value: "20+",
   },
   {
-    label: 'Experienced Doctors',
-    value: '15+',
+    label: "Experienced Doctors",
+    value: "15+",
   },
-]
+];
 
 const ExpItem: FC<ExpItemProps> = ({ item }) => {
-  const { value, label } = item
+  const { value, label } = item;
   return (
-    <Box sx={{ textAlign: 'center', mb: { xs: 1, md: 0 } }}>
+    <Box sx={{ textAlign: "center", mb: { xs: 1, md: 0 } }}>
       <Typography
-        sx={{ color: 'secondary.main', mb: { xs: 1, md: 2 }, fontSize: { xs: 34, md: 44 }, fontWeight: 'bold' }}
+        sx={{
+          color: "secondary.main",
+          mb: { xs: 1, md: 2 },
+          fontSize: { xs: 34, md: 44 },
+          fontWeight: "bold",
+        }}
       >
         {value}
       </Typography>
@@ -66,95 +79,143 @@ const ExpItem: FC<ExpItemProps> = ({ item }) => {
         {label}
       </Typography>
     </Box>
-  )
-}
+  );
+};
 
 const HomeHero: FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    country: '',
-    mobileNumber: '',
-    medicalRequirements: '',
-  })
+    name: "",
+    email: "",
+    country: "",
+    mobileNumber: "",
+    medicalRequirements: "",
+    files: [],
+  });
 
   const handleChange = (
     event:
-      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | { name?: string; value: unknown }>
+      | React.ChangeEvent<
+          | HTMLInputElement
+          | HTMLTextAreaElement
+          | { name?: string; value: unknown }
+        >
       | SelectChangeEvent<string>
   ): void => {
-    const { name, value } = 'target' in event ? event.target : event
-    setFormData({ ...formData, [name as string]: value as string })
-  }
+    const { name, value } = "target" in event ? event.target : event;
+    setFormData({ ...formData, [name as string]: value as string });
+  };
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = event.target.files;
+    if (fileList) {
+      const selectedFiles: File[] = Array.from(fileList);
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        files: [...prevFormData.files, ...selectedFiles],
+      }));
+    }
+  };
+
+  const handleRemoveFile = (index: number) => {
+    const updatedFiles = [...formData.files];
+    updatedFiles.splice(index, 1);
+    setFormData({ ...formData, files: updatedFiles });
+  };
 
   const handleSubmit = (event: React.FormEvent): void => {
-    event.preventDefault()
-    // Handle form submission logic here
-    console.log('Form submitted:', formData)
-  }
+    event.preventDefault();
+    console.log("Form submitted:", formData);
+
+    setFormData({
+      name: "",
+      email: "",
+      country: "",
+      mobileNumber: "",
+      medicalRequirements: "",
+      files: [],
+    });
+  };
 
   return (
-    <Box id="hero" sx={{ backgroundColor: 'background.paper', position: 'relative', pt: 4, pb: { xs: 8, md: 10 } }}>
+    <Box
+      id="hero"
+      sx={{
+        backgroundColor: "background.paper",
+        position: "relative",
+        pt: 4,
+        pb: { xs: 8, md: 10 },
+      }}
+    >
       <Container maxWidth="lg">
-        <Grid container spacing={0} sx={{ flexDirection: { xs: 'column', md: 'unset' } }}>
+        <Grid
+          container
+          spacing={0}
+          sx={{ flexDirection: { xs: "column", md: "unset" } }}
+        >
           <Grid item xs={12} md={7}>
             <Box
               sx={{
-                textAlign: { xs: 'center', md: 'left' },
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
+                textAlign: { xs: "center", md: "left" },
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
               }}
             >
               <Box sx={{ mb: 3 }}>
                 <Typography
                   component="h2"
                   sx={{
-                    position: 'relative',
+                    position: "relative",
                     fontSize: { xs: 40, md: 72 },
                     letterSpacing: 1.5,
-                    fontWeight: 'bold',
+                    fontWeight: "bold",
                     lineHeight: 1.3,
                   }}
                 >
                   <Typography
                     component="mark"
                     sx={{
-                      position: 'relative',
-                      color: 'primary.main',
-                      fontSize: 'inherit',
-                      fontWeight: 'inherit',
-                      backgroundColor: 'unset',
+                      position: "relative",
+                      color: "primary.main",
+                      fontSize: "inherit",
+                      fontWeight: "inherit",
+                      backgroundColor: "unset",
                     }}
                   >
-                    Transform{' '}
+                    Transform{" "}
                     <Box
                       sx={{
-                        position: 'absolute',
+                        position: "absolute",
                         top: { xs: 24, md: 34 },
                         left: 2,
-                        transform: 'rotate(3deg)',
-                        '& img': { width: { xs: 146, md: 210 }, height: 'auto' },
+                        transform: "rotate(3deg)",
+                        "& img": {
+                          width: { xs: 146, md: 210 },
+                          height: "auto",
+                        },
                       }}
                     >
                       {/* eslint-disable-next-line */}
-                      <img src="/images/headline-curve.svg" alt="Headline curve" />
+                      <img
+                        src="/images/headline-curve.svg"
+                        alt="Headline curve"
+                      />
                     </Box>
                   </Typography>
-                  your{' '}
+                  your{" "}
                   <Typography
                     component="span"
                     sx={{
-                      fontSize: 'inherit',
-                      fontWeight: 'inherit',
-                      position: 'relative',
-                      '& svg': {
-                        position: 'absolute',
+                      fontSize: "inherit",
+                      fontWeight: "inherit",
+                      position: "relative",
+                      "& svg": {
+                        position: "absolute",
                         top: -16,
                         right: -21,
                         width: { xs: 22, md: 30 },
-                        height: 'auto',
+                        height: "auto",
                       },
                     }}
                   >
@@ -175,41 +236,69 @@ const HomeHero: FC = () => {
                         />
                       </g>
                     </svg>
-                  </Typography>{' '}
+                  </Typography>{" "}
                   <br />
                   with CuraAid
                 </Typography>
               </Box>
-              <Box sx={{ mb: 4, width: { xs: '100%', md: '70%' } }}>
-                <Typography sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
+              <Box sx={{ mb: 4, width: { xs: "100%", md: "70%" } }}>
+                <Typography sx={{ color: "text.secondary", lineHeight: 1.6 }}>
                   {
                     <ul>
-                      <li>Cutting-edge Healthcare at significantly lower costs.</li>
-                      <li>World-Class Specialists offering advanced treatments.</li>
                       <li>
-                        Comprehensive Services including visa assistance, accommodation, travel arrangements, and
-                        interpreter services.
+                        Cutting-edge Healthcare at significantly lower costs.
                       </li>
-                      <li>Seamless Experience from arrival to post-treatment care</li>
+                      <li>
+                        World-Class Specialists offering advanced treatments.
+                      </li>
+                      <li>
+                        Comprehensive Services including visa assistance,
+                        accommodation, travel arrangements, and interpreter
+                        services.
+                      </li>
+                      <li>
+                        Seamless Experience from arrival to post-treatment care
+                      </li>
                     </ul>
                   }
                 </Typography>
               </Box>
-              <Box sx={{ '& button': { mr: 2 } }}>
-                <ScrollLink to="popular-course" spy={true} smooth={true} offset={0} duration={350}>
-                  <StyledButton color="primary" size="large" variant="contained">
+              <Box sx={{ "& button": { mr: 2 } }}>
+                <ScrollLink
+                  to="popular-course"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={350}
+                >
+                  <StyledButton
+                    color="primary"
+                    size="large"
+                    variant="contained"
+                  >
                     Explore treatments
                   </StyledButton>
                 </ScrollLink>
-                <ScrollLink to="video-section" spy={true} smooth={true} offset={0} duration={350}>
-                  <StyledButton color="primary" size="large" variant="outlined" startIcon={<PlayArrowIcon />}>
+                <ScrollLink
+                  to="video-section"
+                  spy={true}
+                  smooth={true}
+                  offset={0}
+                  duration={350}
+                >
+                  <StyledButton
+                    color="primary"
+                    size="large"
+                    variant="outlined"
+                    startIcon={<PlayArrowIcon />}
+                  >
                     Watch Testimonials
                   </StyledButton>
                 </ScrollLink>
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={12} md={5} sx={{ position: 'relative' }}>
+          <Grid item xs={12} md={5} sx={{ position: "relative" }}>
             {/* Sertificate badge */}
             {/* <Box
               sx={{
@@ -258,7 +347,18 @@ const HomeHero: FC = () => {
               {/* <Image src="/images/home-hero.jpg" width={775} height={787} alt="Hero img" /> */}
               {/* <EnquiryForm /> */}
               <div>
-                <h2>Reach out today to plan your medical journey</h2>
+                <Typography
+                  component="h2"
+                  sx={{
+                    color: "black",
+                    fontSize: "1.5rem",
+                    fontWeight: 700,
+                    mb: 0.5,
+                    textAlign: "center",
+                  }}
+                >
+                  Reach out today to plan your medical journey
+                </Typography>
                 <form onSubmit={handleSubmit}>
                   <TextField
                     label="Your Name"
@@ -332,8 +432,52 @@ const HomeHero: FC = () => {
                     fullWidth
                     multiline
                     rows={4}
+                    sx={{ marginBottom: 5 }}
                   />
-                  <Button type="submit" variant="contained" color="primary" style={{ marginTop: 20 }}>
+                  <Box
+                  sx={{marginBottom:2}}>
+                  <label
+                    htmlFor="fileInput"
+                    style={{
+                      cursor: "pointer",
+                      border: "1px solid #ccc",
+                      borderRadius: 4,
+                      padding: "8px 12px",
+                    }}
+                  >
+                    Select Files
+                  </label>
+                  <input
+                    id="fileInput"
+                    type="file"
+                    onChange={handleFileChange}
+                    multiple
+                    style={{
+                      padding: "8px 12px",
+                      width: 400,
+                      height: 40,
+                      border: "1px solid #ccc",
+                      borderRadius: 4,
+                      display: "none",
+                    }}
+                  />
+                  </Box>
+                  <div>
+                    {formData.files.map((file, index) => (
+                      <div key={index}>
+                        <span>{file.name}</span>
+                        <Button onClick={() => handleRemoveFile(index)}>
+                          Remove
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    style={{ marginTop: 20 }}
+                  >
                     Submit
                   </Button>
                 </form>
@@ -354,7 +498,7 @@ const HomeHero: FC = () => {
         </Box>
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export default HomeHero
+export default HomeHero;
