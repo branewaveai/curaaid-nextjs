@@ -1,27 +1,27 @@
 import {
-    setIsOpenLoginDialog,
-    setIsOpenSignupDialog,
+  setIsOpenLoginDialog,
+  setIsOpenSignupDialog,
 } from "@/actions/loginActions";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { SelectChangeEvent } from '@mui/material/Select';
+import { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { SignUpUser } from "../../Constants";
 import { doPostRequest } from "../../Request";
-import { SignUpUser } from "../../config";
 interface Country {
   code: string;
   name: string;
 }
 
-const Signup = () => {
+const Signup: React.FC = () => {
   const router = useRouter();
   const [formData, setFormData] = useState({
     fullName: "",
@@ -30,7 +30,7 @@ const Signup = () => {
   });
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
- 
+
   const handleInputChange = (e: SelectChangeEvent<string>) => {
     const { name, value } = e.target;
     setFormData({
@@ -39,14 +39,13 @@ const Signup = () => {
     });
   };
 
-
-const handleTextFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
-  const { name, value } = e.target;
-  setFormData({
-    ...formData,
-    [name]: value,
-  });
-};
+  const handleTextFieldChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const countrys: Country[] = [
     { code: "+91", name: "India" },
