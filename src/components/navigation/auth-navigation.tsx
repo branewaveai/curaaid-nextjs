@@ -15,19 +15,24 @@
 
 // export default AuthNavigation
 import { StyledButton } from '@/components/styled-button';
+import { RootState } from '@/store';
 import Box from '@mui/material/Box';
-import { FC, useState } from 'react';
+import { FC } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsOpenLoginDialog, setIsOpenSignupDialog } from '../../actions/loginActions';
 import { Login } from '../../pages/login/index';
+import SignupDialog from '../../pages/signup/signupDialog';
 
 const AuthNavigation: FC = () => {
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-
-  const openLoginDialog = () => {
-    setIsLoginOpen(true);
+  const dispatch = useDispatch();
+  const isOpenLoginDialog = useSelector((state: RootState) => state.login.isOpenLoginDialog);
+  const isOpenSignupDialog = useSelector((state: RootState) => state.login.isOpenSignupDialog);
+  const openLogin = () => {
+    dispatch(setIsOpenLoginDialog(!isOpenLoginDialog));
   };
 
-  const closeLoginDialog = () => {
-    setIsLoginOpen(false);
+  const openSignup = () => {
+    dispatch(setIsOpenSignupDialog(!isOpenSignupDialog));
   };
 
   return (
@@ -36,13 +41,16 @@ const AuthNavigation: FC = () => {
         <StyledButton
           disableHoverEffect={true}
           variant="outlined"
-          onClick={openLoginDialog} // Open login dialog on button click
+          onClick={openLogin}
         >
           Sign In
         </StyledButton>
-        <StyledButton disableHoverEffect={true}>Sign Up</StyledButton>
+        <StyledButton disableHoverEffect={true} onClick={openSignup}>
+          Sign Up
+        </StyledButton>
       </Box>
-      <Login isOpen={isLoginOpen} onClose={closeLoginDialog} /> {/* Render login dialog */}
+      <Login isOpen={isOpenLoginDialog}/>
+      <SignupDialog isOpen={isOpenSignupDialog}/>
     </>
   );
 };

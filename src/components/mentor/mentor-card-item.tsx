@@ -1,9 +1,10 @@
-import React, { FC } from 'react'
-import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Image from 'next/image'
+import { FC } from 'react'
 
 import { Mentor } from '@/interfaces/mentor'
+import PlaceIcon from '@mui/icons-material/Place'
 
 interface Props {
   item: Mentor
@@ -43,13 +44,20 @@ const MentorCardItem: FC<Props> = ({ item }) => {
           <Typography component="h2" variant="h4" sx={{ fontSize: '1.4rem' }}>
             {item.name}
           </Typography>
-          <Typography sx={{ mb: 2, color: 'text.secondary' }}>{item.category}</Typography>
-          <Typography sx={{ mb: 2, color: 'text.secondary' }} variant="subtitle1">
+          <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+            <PlaceIcon sx={{ fontSize: 20, color: 'primary.main', marginRight: 0.4 }} />
+            {/* <Typography variant="h5" color="primary.main">
+              Experience:
+            </Typography> */}
+            <Typography sx={{ color: 'text.secondary' }}>{item.location}</Typography>
+          </Box>
+          {/* <Typography sx={{ mb: 2, color: 'text.secondary' }}>{item.category}</Typography> */}
+          {/* <Typography sx={{ mb: 2, color: 'text.secondary' }} variant="subtitle1">
             {item.description}
-          </Typography>
+          </Typography> */}
           <Box sx={{ '& img': { height: 26 } }}>
             {/* eslint-disable-next-line */}
-            <img src={item.company?.logo} alt={item.company?.name + ' logo'} />
+            {/* <img src={item.company?.logo} alt={item.company?.name + ' logo'} /> */}
           </Box>
         </Box>
       </Box>

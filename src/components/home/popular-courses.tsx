@@ -9,7 +9,8 @@ import { styled, useTheme } from '@mui/material/styles'
 import { FC } from 'react'
 import Slider, { Settings } from 'react-slick'
 
-import { CourseCardItem } from '@/components/course'
+// import { CourseCardItem } from '@/components/course'
+import { DoctorCardItem } from '../doctor'
 import { data } from './popular-course.data'
 
 interface SliderArrowArrow {
@@ -102,7 +103,7 @@ const HomePopularCourse: FC = () => {
               }}
             >
               <Typography variant="h1" sx={{ mt: { xs: 0, md: -5 }, fontSize: { xs: 30, md: 48 } }}>
-                Most Popular Treatments
+                Our Expert Doctors
               </Typography>
             </Box>
           </Grid>
@@ -110,7 +111,7 @@ const HomePopularCourse: FC = () => {
           <Grid item xs={12} md={9}>
             <Slider {...sliderConfig}>
               {data.map((item) => (
-                <CourseCardItem key={String(item.id)} item={item} />
+                <DoctorCardItem key={String(item.id)} item={item} />
               ))}
             </Slider>
           </Grid>

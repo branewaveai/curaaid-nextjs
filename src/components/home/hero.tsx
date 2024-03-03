@@ -166,56 +166,50 @@ const HomeHero: FC = () => {
                 <Typography
                   component="h2"
                   sx={{
-                    position: "relative",
+                    position: 'relative',
                     fontSize: { xs: 40, md: 72 },
                     letterSpacing: 1.5,
-                    fontWeight: "bold",
+                    fontWeight: 'bold',
                     lineHeight: 1.3,
                   }}
                 >
                   <Typography
                     component="mark"
                     sx={{
-                      position: "relative",
-                      color: "primary.main",
-                      fontSize: "inherit",
-                      fontWeight: "inherit",
-                      backgroundColor: "unset",
+                      position: 'relative',
+                      color: 'primary.main',
+                      fontSize: 'inherit',
+                      fontWeight: 'inherit',
+                      backgroundColor: 'unset',
                     }}
                   >
-                    Transform{" "}
+                    Transform{' '}
                     <Box
                       sx={{
-                        position: "absolute",
+                        position: 'absolute',
                         top: { xs: 24, md: 34 },
                         left: 2,
-                        transform: "rotate(3deg)",
-                        "& img": {
-                          width: { xs: 146, md: 210 },
-                          height: "auto",
-                        },
+                        transform: 'rotate(3deg)',
+                        '& img': { width: { xs: 146, md: 210 }, height: 'auto' },
                       }}
                     >
                       {/* eslint-disable-next-line */}
-                      <img
-                        src="/images/headline-curve.svg"
-                        alt="Headline curve"
-                      />
+                      <img src="/images/headline-curve.svg" alt="Headline curve" />
                     </Box>
                   </Typography>
-                  your{" "}
+                  your{' '}
                   <Typography
                     component="span"
                     sx={{
-                      fontSize: "inherit",
-                      fontWeight: "inherit",
-                      position: "relative",
-                      "& svg": {
-                        position: "absolute",
+                      fontSize: 'inherit',
+                      fontWeight: 'inherit',
+                      position: 'relative',
+                      '& svg': {
+                        position: 'absolute',
                         top: -16,
                         right: -21,
                         width: { xs: 22, md: 30 },
-                        height: "auto",
+                        height: 'auto',
                       },
                     }}
                   >
@@ -236,69 +230,41 @@ const HomeHero: FC = () => {
                         />
                       </g>
                     </svg>
-                  </Typography>{" "}
+                  </Typography>{' '}
                   <br />
                   with CuraAid
                 </Typography>
               </Box>
-              <Box sx={{ mb: 4, width: { xs: "100%", md: "70%" } }}>
-                <Typography sx={{ color: "text.secondary", lineHeight: 1.6 }}>
+              <Box sx={{ mb: 4, width: { xs: '100%', md: '70%' } }}>
+                <Typography sx={{ color: 'text.secondary', lineHeight: 1.6 }}>
                   {
                     <ul>
+                      <li>Cutting-edge Healthcare at significantly lower costs.</li>
+                      <li>World-Class Specialists offering advanced treatments.</li>
                       <li>
-                        Cutting-edge Healthcare at significantly lower costs.
+                        Comprehensive Services including visa assistance, accommodation, travel arrangements, and
+                        interpreter services.
                       </li>
-                      <li>
-                        World-Class Specialists offering advanced treatments.
-                      </li>
-                      <li>
-                        Comprehensive Services including visa assistance,
-                        accommodation, travel arrangements, and interpreter
-                        services.
-                      </li>
-                      <li>
-                        Seamless Experience from arrival to post-treatment care
-                      </li>
+                      <li>Seamless Experience from arrival to post-treatment care</li>
                     </ul>
                   }
                 </Typography>
               </Box>
-              <Box sx={{ "& button": { mr: 2 } }}>
-                <ScrollLink
-                  to="popular-course"
-                  spy={true}
-                  smooth={true}
-                  offset={0}
-                  duration={350}
-                >
-                  <StyledButton
-                    color="primary"
-                    size="large"
-                    variant="contained"
-                  >
+              <Box sx={{ '& button': { mr: 2 } }}>
+                <ScrollLink to="popular-treatment" spy={true} smooth={true} offset={0} duration={350}>
+                  <StyledButton color="primary" size="large" variant="contained">
                     Explore treatments
                   </StyledButton>
                 </ScrollLink>
-                <ScrollLink
-                  to="video-section"
-                  spy={true}
-                  smooth={true}
-                  offset={0}
-                  duration={350}
-                >
-                  <StyledButton
-                    color="primary"
-                    size="large"
-                    variant="outlined"
-                    startIcon={<PlayArrowIcon />}
-                  >
+                <ScrollLink to="video-section" spy={true} smooth={true} offset={0} duration={350}>
+                  <StyledButton color="primary" size="large" variant="outlined" startIcon={<PlayArrowIcon />}>
                     Watch Testimonials
                   </StyledButton>
                 </ScrollLink>
               </Box>
             </Box>
           </Grid>
-          <Grid item xs={12} md={5} sx={{ position: "relative" }}>
+          <Grid item xs={12} md={5} sx={{ position: 'relative' }}>
             {/* Sertificate badge */}
             {/* <Box
               sx={{

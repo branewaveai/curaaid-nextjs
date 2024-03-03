@@ -10,15 +10,23 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setPhoneNumber } from "../../actions/loginActions";
+import { setIsOpenLoginDialog, setIsOpenSignupDialog, setPhoneNumber } from "../../actions/loginActions";
 import { RootState } from "../../store";
 interface LoginDialogProps {
   isOpen: boolean;
-  onClose: () => void;
 }
 
-const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose }) => {
+const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen}) => {
   const dispatch = useDispatch();
+  const isOpenLoginDialog = useSelector((state: RootState) => state.login.isOpenLoginDialog);
+  const isOpenSignupDialog = useSelector((state: RootState) => state.login.isOpenSignupDialog);
+  const openLogin = () => {
+    dispatch(setIsOpenLoginDialog(!isOpenLoginDialog));
+  };
+
+  const openSignup = () => {
+    dispatch(setIsOpenSignupDialog(!isOpenSignupDialog));
+  };
   const phoneNumber = useSelector(
     (state: RootState) => state.login.phoneNumber
   );
@@ -80,10 +88,14 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose }) => {
     // Your remaining login logic here
     router.push("/dashboard"); // Example redirect to dashboard after login
   };
+  const handleRegisterClick = () => {
+    dispatch(setIsOpenSignupDialog(true));
+    dispatch(setIsOpenLoginDialog(false));
+  };
 
   return (
     <>
-      <Dialog open={isOpen} onClose={onClose}>
+      <Dialog open={isOpen} onClose={ openLogin}>
         <DialogTitle sx={{ backgroundColor: "#f0f8ff", color: "black" }}>
           Login
         </DialogTitle>
@@ -129,8 +141,11 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose }) => {
           )}
           <p>
             Don't have an account?{" "}
-            <Link href="/signup/signup">
-              <a style={{ color: "darkgreen" }} onClick={onClose}>
+            <Link href="#">
+              <a
+                style={{ color: "darkgreen" }}
+                onClick={handleRegisterClick}
+              >
                 Register here
               </a>
             </Link>

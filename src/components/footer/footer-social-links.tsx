@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
+import { SocialLink } from '@/interfaces/social-link'
 import Box from '@mui/material/Box'
 import Link from '@mui/material/Link'
-import { SocialLink } from '@/interfaces/social-link'
+import { FC } from 'react'
 
 export const socialLinks: SocialLink[] = [
   {
@@ -29,6 +29,16 @@ export const socialLinks: SocialLink[] = [
     link: 'https://github.com/hiriski/coursespace-landing-page',
     icon: '/images/icons/github.svg',
   },
+  // {
+  //   name: 'Dribbble',
+  //   link: 'https://dribbble.com/shots/18114471-Coursespace-Online-Course-Landing-Page',
+  //   icon: '/images/icons/dribbble.svg',
+  // },
+  // {
+  //   name: 'Github',
+  //   link: 'https://github.com/hiriski/coursespace-landing-page',
+  //   icon: '/images/icons/github.svg',
+  // },
 ]
 
 interface SocialLinkItemProps {
