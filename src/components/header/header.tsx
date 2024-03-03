@@ -43,6 +43,7 @@ const Header: FC = () => {
               }),
             }}
           >
+            <Box />
             <Box /> {/* Magic space */}
             <Navigation />
             <AuthNavigation />

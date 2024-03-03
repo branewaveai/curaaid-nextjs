@@ -1,7 +1,7 @@
-import React, { FC } from 'react'
-import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Image from 'next/image'
+import { FC } from 'react'
 
 import { Mentor } from '@/interfaces/mentor'
 import PlaceIcon from '@mui/icons-material/Place'

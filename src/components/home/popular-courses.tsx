@@ -10,8 +10,8 @@ import { FC } from 'react'
 import Slider, { Settings } from 'react-slick'
 
 // import { CourseCardItem } from '@/components/course'
-import { data } from './popular-course.data'
 import { DoctorCardItem } from '../doctor'
+import { data } from './popular-course.data'
 
 interface SliderArrowArrow {
   onClick?: () => void

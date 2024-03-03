@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
-import Link from 'next/link'
+import { FooterSectionTitle } from '@/components/footer'
+import { navigations as headerNavigations } from '@/components/navigation/navigation.data'
+import type { Navigation } from '@/interfaces/navigation'
 import Grid from '@mui/material/Grid'
 import MuiLink from '@mui/material/Link'
-import type { Navigation } from '@/interfaces/navigation'
-import { navigations as headerNavigations } from '@/components/navigation/navigation.data'
-import { FooterSectionTitle } from '@/components/footer'
+import Link from 'next/link'
+import { FC } from 'react'
 
 const courseMenu: Array<Navigation> = [
   {
@@ -59,6 +59,12 @@ const NavigationItem: FC<NavigationItemProps> = ({ label, path }) => {
 const FooterNavigation: FC = () => {
   return (
     <Grid container spacing={2}>
+      <Grid item xs={12} md={4}>
+        <FooterSectionTitle title="Course" />
+        {courseMenu.map(({ label, path }, index) => (
+          <NavigationItem key={index + path} label={label} path={/* path */ '#'} />
+        ))}
+      </Grid>
       <Grid item xs={12} md={4}>
         <FooterSectionTitle title="Menu" />
         {pageMenu.map(({ label, path }, index) => (

@@ -1,7 +1,6 @@
-import React from 'react'
-import dynamic from 'next/dynamic'
-import { NextPageWithLayout } from '@/interfaces/layout'
 import { MainLayout } from '@/components/layout'
+import { NextPageWithLayout } from '@/interfaces/layout'
+import dynamic from 'next/dynamic'
 // import { HomeFeature, HomeHero, HomePopularCourse, HomeTestimonial, HomeOurMentors, DynamicHomeNewsLetter } from '@/components/home'
 
 const DynamicHomeHero = dynamic(() => import('../components/home/hero'))
@@ -17,9 +16,10 @@ const Home: NextPageWithLayout = () => {
     <>
       <DynamicHomeHero />
       <DynamicHomeTreatment />
-      <DynamicHomeOurMentors />
       <DynamicHomePopularCourse />
-
+      {/* <DynamicHomeFeature /> */}
+      {/* <DynamicHomeTestimonial /> */}
+      <DynamicHomeOurMentors />
       {/* <DynamicHomeFeature /> */}
       {/* <DynamicHomeTestimonial /> */}
 
