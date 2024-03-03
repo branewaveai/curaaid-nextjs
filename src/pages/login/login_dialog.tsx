@@ -1,13 +1,17 @@
-// src/components/LoginDialog.tsx
-
-import { Button, Dialog, DialogContent, DialogTitle, TextField } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { setPhoneNumber } from "../../actions/loginActions";
-import { RootState } from "../../store"; // Assuming you have a store setup with RootState type
-
+import { RootState } from "../../store";
 interface LoginDialogProps {
   isOpen: boolean;
   onClose: () => void;
@@ -15,9 +19,11 @@ interface LoginDialogProps {
 
 const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
-  const phoneNumber = useSelector((state: RootState) => state.login.phoneNumber);
+  const phoneNumber = useSelector(
+    (state: RootState) => state.login.phoneNumber
+  );
   const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
-  const navigate = useNavigate();
+  const router = useRouter(); // Use Next.js useRouter hook
 
   const [otp, setOtp] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
@@ -72,6 +78,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose }) => {
     const userName = "John Doe";
     // setItem("userName", userName);
     // Your remaining login logic here
+    router.push("/dashboard"); // Example redirect to dashboard after login
   };
 
   return (
@@ -122,8 +129,10 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen, onClose }) => {
           )}
           <p>
             Don't have an account?{" "}
-            <Link to="/signup" onClick={onClose} style={{ color: "darkgreen" }}>
-              Register here
+            <Link href="/signup/signup">
+              <a style={{ color: "darkgreen" }} onClick={onClose}>
+                Register here
+              </a>
             </Link>
           </p>
         </DialogContent>
