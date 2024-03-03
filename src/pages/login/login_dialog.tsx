@@ -86,7 +86,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen}) => {
     const userName = "John Doe";
     // setItem("userName", userName);
     // Your remaining login logic here
-    router.push("/dashboard"); // Example redirect to dashboard after login
+    // router.push("/dashboard"); // Example redirect to dashboard after login
   };
   const handleRegisterClick = () => {
     dispatch(setIsOpenSignupDialog(true));
@@ -96,8 +96,8 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen}) => {
   return (
     <>
       <Dialog open={isOpen} onClose={ openLogin}>
-        <DialogTitle sx={{ backgroundColor: "#f0f8ff", color: "black" }}>
-          Login
+        <DialogTitle sx={{ backgroundColor: "#f0f8ff", color: "primary.main" }}>
+          Login with CuraAid
         </DialogTitle>
         <DialogContent sx={{ backgroundColor: "#f0f8ff", padding: "16px" }}>
           <TextField
