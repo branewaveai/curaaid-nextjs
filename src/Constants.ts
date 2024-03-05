@@ -3,7 +3,7 @@
 // export const LoginUser = "https://448yam6tmc.execute-api.ap-south-1.amazonaws.com/dev//login";
 // export const SignUpUser = "https://448yam6tmc.execute-api.ap-south-1.amazonaws.com/dev//register";
 // export const Treatments = "https://448yam6tmc.execute-api.ap-south-1.amazonaws.com/dev/treatments";
-const BASE_URL = "https://448yam6tmc.execute-api.ap-south-1.amazonaws.com/dev";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 export const LoginUser = `${BASE_URL}//login`;
 export const SignUpUser = `${BASE_URL}//register`;
