@@ -196,7 +196,7 @@ const HomeHero: FC = () => {
                 </Typography>
               </Box>
               <Box sx={{ '& button': { mr: 2 } }}>
-                <ScrollLink to="popular-course" spy={true} smooth={true} offset={0} duration={350}>
+                <ScrollLink to="popular-treatment" spy={true} smooth={true} offset={0} duration={350}>
                   <StyledButton color="primary" size="large" variant="contained">
                     Explore treatments
                   </StyledButton>
@@ -258,7 +258,19 @@ const HomeHero: FC = () => {
               {/* <Image src="/images/home-hero.jpg" width={775} height={787} alt="Hero img" /> */}
               {/* <EnquiryForm /> */}
               <div>
-                <h2>Reach out today to plan your medical journey</h2>
+                <Typography
+                  variant="h2"
+                  noWrap
+                  sx={{
+                    display: '-webkit-box',
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                    whiteSpace: 'normal',
+                    WebkitLineClamp: 2,
+                  }}
+                >
+                  Reach out to plan your medical journey
+                </Typography>
                 <form onSubmit={handleSubmit}>
                   <TextField
                     label="Your Name"

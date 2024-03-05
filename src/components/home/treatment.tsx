@@ -1,15 +1,15 @@
-import { MentorCardItem } from '@/components/mentor'
 import IconArrowBack from '@mui/icons-material/ArrowBack'
 import IconArrowForward from '@mui/icons-material/ArrowForward'
+import { IconButton, useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
-import IconButton from '@mui/material/IconButton'
+import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { styled, useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import { FC } from 'react'
 import Slider, { Settings } from 'react-slick'
-import { data } from './mentors.data'
+import { data } from './treatment.data'
+import TreatmentCardItem from '../treatment/treatment-card-item'
 
 interface SliderArrowArrow {
   onClick?: () => void
@@ -25,7 +25,7 @@ const SliderArrow: FC<SliderArrowArrow> = (props) => {
         backgroundColor: 'background.paper',
         color: 'primary.main',
         '&:hover': { backgroundColor: 'primary.main', color: 'primary.contrastText' },
-        bottom: '-28px !important',
+        bottom: { xs: '-70px !important', md: '-28px !important' },
         left: 'unset !important',
         right: type === 'prev' ? '60px !important' : '0 !important',
         zIndex: 10,
@@ -57,13 +57,13 @@ const StyledDots = styled('ul')(({ theme }) => ({
   },
 }))
 
-const HomeOurMentors: FC = () => {
+const HomeTreatment: FC = () => {
   const { breakpoints } = useTheme()
   const matchMobileView = useMediaQuery(breakpoints.down('md'))
 
   const sliderConfig: Settings = {
     infinite: true,
-    // autoplay: true,
+    autoplay: true,
     speed: 300,
     slidesToShow: matchMobileView ? 1 : 3,
     slidesToScroll: 1,
@@ -78,32 +78,45 @@ const HomeOurMentors: FC = () => {
 
   return (
     <Box
-      id="mentors"
+      id="popular-treatment"
       sx={{
         pt: {
           xs: 6,
           md: 8,
         },
-        pb: {
-          xs: 8,
-          md: 12,
-        },
-        backgroundColor: '#ecf3f3',
+        pb: 14,
+        backgroundColor: 'background.default',
       }}
     >
       <Container maxWidth="lg">
-        <Typography variant="h1" sx={{ fontSize: 40 }}>
-          Explore Our Network Of Best Hospitals
-        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={3}>
+            <Box
+              sx={{
+                height: '100%',
+                width: { xs: '100%', md: '90%' },
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: { xs: 'center', md: 'flex-start' },
+              }}
+            >
+              <Typography variant="h1" sx={{ mt: { xs: 0, md: -5 }, fontSize: { xs: 30, md: 48 } }}>
+                Our Treatments
+              </Typography>
+            </Box>
+          </Grid>
 
-        <Slider {...sliderConfig}>
-          {data.map((item) => (
-            <MentorCardItem key={String(item.id)} item={item} />
-          ))}
-        </Slider>
+          <Grid item xs={12} md={9}>
+            <Slider {...sliderConfig}>
+              {data.map((item) => (
+                <TreatmentCardItem key={String(item.id)} item={item} />
+              ))}
+            </Slider>
+          </Grid>
+        </Grid>
       </Container>
     </Box>
   )
 }
 
-export default HomeOurMentors
+export default HomeTreatment
