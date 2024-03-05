@@ -1,10 +1,26 @@
+// import { StyledButton } from '@/components/styled-button'
+// import Box from '@mui/material/Box'
+// import { FC } from 'react'
+
+// const AuthNavigation: FC = () => {
+//   return (
+//     <Box sx={{ '& button:first-child': { mr: 2 } }}>
+//       <StyledButton disableHoverEffect={true} variant="outlined">
+//         Sign In
+//       </StyledButton>
+//       <StyledButton disableHoverEffect={true}>Sign Up</StyledButton>
+//     </Box>
+//   )
+// }
+
+// export default AuthNavigation
 import { StyledButton } from '@/components/styled-button';
 import { RootState } from '@/store';
 import Box from '@mui/material/Box';
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsOpenLoginDialog, setIsOpenSignupDialog } from '../../actions/loginActions';
-import Login from '../../pages/login/login_dialog';
+import { Login } from '../../pages/login/index';
 import SignupDialog from '../../pages/signup/signupDialog';
 
 const AuthNavigation: FC = () => {
