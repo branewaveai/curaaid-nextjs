@@ -1,0 +1,21 @@
+# Dependency directories
+/node_modules
+
+# Next.js build directory
+/.next
+
+# Environment variables
+/.env
+/.env.local
+
+# IDE specific files (e.g., Visual Studio Code)
+/.vscode
+
+# macOS specific files
+.DS_Store
+
+# Optional: Log files
+*.log
+
+# Optional: Editor configuration files
+.editorconfig
