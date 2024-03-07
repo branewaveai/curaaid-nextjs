@@ -77,12 +77,6 @@ const VisuallyHiddenInput = styled("input")({
   width: 1,
 });
 const ExpItem: FC<ExpItemProps> = ({ item }) => {
-  const router = useRouter();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    router.push("/thankyou");
-  };
   const { value, label } = item;
   return (
     <Box sx={{ textAlign: "center", mb: { xs: 1, md: 0 } }}>
@@ -104,6 +98,13 @@ const ExpItem: FC<ExpItemProps> = ({ item }) => {
 };
 
 const HomeHero: FC = () => {
+  const router = useRouter();
+  const handleSubmit = (event: React.FormEvent): void => {
+    event.preventDefault();
+    // Handle form submission logic here
+    console.log("Form submitted:", formData);
+    router.push("/thanks");
+  };
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -111,6 +112,14 @@ const HomeHero: FC = () => {
     mobileNumber: "",
     medicalRequirements: "",
   });
+  const [file, setFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files && event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
+  };
 
   const handleChange = (
     event:
@@ -123,12 +132,6 @@ const HomeHero: FC = () => {
   ): void => {
     const { name, value } = "target" in event ? event.target : event;
     setFormData({ ...formData, [name as string]: value as string });
-  };
-
-  const handleSubmit = (event: React.FormEvent): void => {
-    event.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
   };
 
   return (
@@ -437,9 +440,16 @@ const HomeHero: FC = () => {
                     startIcon={<CloudUploadIcon />}
                     fullWidth
                   >
-                    Upload file
-                    <VisuallyHiddenInput type="file" />
+                    {file ? `${file.name}` : "Upload file"}
+                    <input
+                      type="file"
+                      style={{ display: "none" }}
+                      onChange={handleFileChange}
+                    />
+
+                    {!file && <> (No file selected)</>}
                   </Button>
+
                   <Button
                     type="submit"
                     variant="contained"
