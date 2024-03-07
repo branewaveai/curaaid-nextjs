@@ -114,7 +114,7 @@ const HomeHero: FC = () => {
   });
   const [file, setFile] = useState<File | null>(null);
 
-  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files && event.target.files[0];
     if (selectedFile) {
       setFile(selectedFile);
