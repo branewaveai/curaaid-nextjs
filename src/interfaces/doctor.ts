@@ -7,4 +7,6 @@ export interface Doctor {
   ratingCount: number
   price: number
   category: string
+  location: string
+  hospital: string
 }
