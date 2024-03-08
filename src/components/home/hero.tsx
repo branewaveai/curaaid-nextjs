@@ -54,7 +54,7 @@ const countries = [
 const exps: Array<Exp> = [
   {
     label: "Patients served",
-    value: "100+",
+    value: "20+",
   },
   {
     label: "Treatments Offered",
