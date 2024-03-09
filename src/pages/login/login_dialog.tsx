@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Dialog,
   DialogContent,
@@ -6,32 +7,29 @@ import {
   TextField,
 } from "@mui/material";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { setIsOpenLoginDialog, setIsOpenSignupDialog, setPhoneNumber } from "../../actions/loginActions";
+import {
+  setIsOpenLoginDialog,
+  setIsOpenSignupDialog,
+  setPhoneNumber,
+} from "../../actions/loginActions";
 import { RootState } from "../../store";
 interface LoginDialogProps {
   isOpen: boolean;
 }
 
-const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen}) => {
-  const dispatch = useDispatch();
-  const isOpenLoginDialog = useSelector((state: RootState) => state.login.isOpenLoginDialog);
-  const isOpenSignupDialog = useSelector((state: RootState) => state.login.isOpenSignupDialog);
-  const openLogin = () => {
-    dispatch(setIsOpenLoginDialog(!isOpenLoginDialog));
-  };
+// Import statements...
 
-  const openSignup = () => {
-    dispatch(setIsOpenSignupDialog(!isOpenSignupDialog));
-  };
+const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen }) => {
+  const dispatch = useDispatch();
+  const isOpenLoginDialog = useSelector(
+    (state: RootState) => state.login.isOpenLoginDialog
+  );
   const phoneNumber = useSelector(
     (state: RootState) => state.login.phoneNumber
   );
-  const isLoggedIn = useSelector((state: RootState) => state.login.isLoggedIn);
-  const router = useRouter(); // Use Next.js useRouter hook
 
   const [otp, setOtp] = useState("");
   const [isOtpSent, setIsOtpSent] = useState(false);
@@ -50,44 +48,36 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen}) => {
     const countdownInterval = setInterval(() => {
       setSecondsRemaining((prevSeconds) => prevSeconds - 1);
 
-      if (seconds === 0) {
+      if (seconds === 1) {
         clearInterval(countdownInterval);
         setIsSendButtonDisabled(false);
         setSecondsRemaining(30);
       }
-    }, 3000);
+      seconds--;
+    }, 1000);
   };
 
   const handleLogin = () => {
     if (!phoneNumber) {
-      toast.error("Please enter phone number", {
-        position: "top-right",
-        autoClose: 3000,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "Light",
-      });
+      toast.error("Please enter phone number");
       return;
     }
     if (!otp) {
-      toast.error("Please enter OTP", {
-        position: "top-right",
-        autoClose: 3000,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "Light",
-      });
+      toast.error("Please enter OTP");
       return;
     }
-    const userName = "John Doe";
-    // setItem("userName", userName);
-    // Your remaining login logic here
-    // router.push("/dashboard"); // Example redirect to dashboard after login
+    // Your login logic...
+    
+    // Resetting states
+    setOtp("");
+    setIsOtpSent(false);
+    setSecondsRemaining(30);
+
+    // Closing the dialog
+    dispatch(setIsOpenLoginDialog(false));
+    dispatch(setPhoneNumber(''))
   };
+
   const handleRegisterClick = () => {
     dispatch(setIsOpenSignupDialog(true));
     dispatch(setIsOpenLoginDialog(false));
@@ -95,62 +85,87 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ isOpen}) => {
 
   return (
     <>
-      <Dialog open={isOpen} onClose={ openLogin}>
-        <DialogTitle sx={{ backgroundColor: "#f0f8ff", color: "primary.main" }}>
-          Login with CuraAid
-        </DialogTitle>
-        <DialogContent sx={{ backgroundColor: "#f0f8ff", padding: "16px" }}>
-          <TextField
-            label="Phone Number"
-            type="tel"
-            value={phoneNumber}
-            onChange={(e) => dispatch(setPhoneNumber(e.target.value))}
-            fullWidth
-            margin="normal"
+      <Dialog open={isOpen} onClose={() => dispatch(setIsOpenLoginDialog(false))}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          height="100vh"
+          marginTop={-10}
+        >
+          <img
+            src="/images/avatars/Logo.jpg"
+            alt="Logo"
+            style={{ width: 100 }}
           />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSendOtp}
-            disabled={isSendButtonDisabled}
-            sx={{ mt: 2, backgroundColor: "darkgreen", color: "white" }}
+          <DialogTitle
+            sx={{ backgroundColor: "#f0f8ff", color: "primary.main" }}
           >
-            {isSendButtonDisabled
-              ? `Resend OTP in ${secondsRemaining} seconds`
-              : "Send OTP"}
-          </Button>
-          {isOtpSent && (
-            <>
+            Login with CuraAid
+          </DialogTitle>
+          <Box
+            width={400}
+            padding={3}
+            boxShadow={3}
+            borderRadius={8}
+            bgcolor="white"
+            textAlign="center"
+          >
+            <DialogContent sx={{ backgroundColor: "#f0f8ff", padding: "16px" }}>
               <TextField
-                label="Enter OTP"
-                type="text"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
+                label="Phone Number"
+                type="tel"
+                value={phoneNumber}
+                onChange={(e) => dispatch(setPhoneNumber(e.target.value))}
                 fullWidth
                 margin="normal"
               />
               <Button
                 variant="contained"
                 color="primary"
-                onClick={handleLogin}
+                onClick={handleSendOtp}
+                disabled={isSendButtonDisabled}
                 sx={{ mt: 2, backgroundColor: "darkgreen", color: "white" }}
               >
-                Login
+                {isSendButtonDisabled
+                  ? `Resend OTP in ${secondsRemaining} seconds`
+                  : "Send OTP"}
               </Button>
-            </>
-          )}
-          <p>
-            Don't have an account?{" "}
-            <Link href="#">
-              <a
-                style={{ color: "darkgreen" }}
-                onClick={handleRegisterClick}
-              >
-                Register here
-              </a>
-            </Link>
-          </p>
-        </DialogContent>
+              {isOtpSent && (
+                <>
+                  <TextField
+                    label="Enter OTP"
+                    type="text"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    fullWidth
+                    margin="normal"
+                  />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleLogin}
+                    sx={{ mt: 2, backgroundColor: "darkgreen", color: "white" }}
+                  >
+                    Login
+                  </Button>
+                </>
+              )}
+              <p>
+                Don't have an account?{" "}
+                <Link href="#">
+                  <a
+                    style={{ color: "darkgreen" }}
+                    onClick={handleRegisterClick}
+                  >
+                    Register here
+                  </a>
+                </Link>
+              </p>
+            </DialogContent>
+          </Box>
+        </Box>
       </Dialog>
     </>
   );
