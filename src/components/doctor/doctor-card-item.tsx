@@ -58,14 +58,14 @@ const DoctorCardItem: FC<Props> = ({ item }) => {
           {/* <Typography variant="h5" color="primary.main">
               Experience:
             </Typography> */}
-          <Typography sx={{ color: 'text.secondary' }}>Banglore, India</Typography>
+          <Typography sx={{ color: 'text.secondary' }}>{item.location}</Typography>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <LocalHospitalIcon sx={{ fontSize: 20, color: 'primary.main', marginRight: 0.4 }} />
           {/* <Typography variant="h5" color="primary.main">
               Experience:
             </Typography> */}
-          <Typography sx={{ color: 'text.secondary' }}>Fortis, Banglore</Typography>
+          <Typography sx={{ color: 'text.secondary' }}>{item.hospital}</Typography>
         </Box>
 
         {/* <Box sx={{ display: 'flex', alignItems: 'center' }}>
