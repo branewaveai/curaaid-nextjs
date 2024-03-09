@@ -44,32 +44,41 @@ const EnquiryForm: React.FC = () => {
 
   const handleChange = (
     event:
-      | React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | { name?: string; value: unknown }>
+      | React.ChangeEvent<
+          | HTMLInputElement
+          | HTMLTextAreaElement
+          | { name?: string; value: unknown }
+        >
       | SelectChangeEvent<string>
   ): void => {
     const { name, value } = event.target as { name?: string; value: string };
-    setFormData((prevFormData) => ({ ...prevFormData, [name as string]: value }));
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name as string]: value,
+    }));
   };
 
   const handleSubmit = (event: React.FormEvent): void => {
     event.preventDefault();
-    const { name, email, country, mobileNumber, medicalRequirements } = formData;
-  const isValidMobileNumber = /^\d{7,10}$/.test(mobileNumber);
+    const { name, email, country, mobileNumber, medicalRequirements } =
+      formData;
+    const isValidMobileNumber = /^\d{7,10}$/.test(mobileNumber);
 
-  if (!isValidMobileNumber) {
-    console.warn("Invalid mobile number");
-    const mobileNumberInput = document.querySelector<HTMLInputElement>("#mobileNumber");
-    if (mobileNumberInput) mobileNumberInput.focus();
-    return;
-  }
+    if (!isValidMobileNumber) {
+      console.warn("Invalid mobile number");
+      const mobileNumberInput =
+        document.querySelector<HTMLInputElement>("#mobileNumber");
+      if (mobileNumberInput) mobileNumberInput.focus();
+      return;
+    }
     const requestBody = {
       name: formData.name,
       email: formData.email,
       countryName: formData.country,
       phoneNumber: formData.mobileNumber,
-      desc: formData.medicalRequirements
+      desc: formData.medicalRequirements,
     };
-    
+
     const headers = {
       "Content-Type": "application/json",
     };
@@ -81,22 +90,31 @@ const EnquiryForm: React.FC = () => {
       .then((response) => {
         if (response.ok) {
           // Successful response
+
           if (response.status === 200) {
             console.log("Form submitted:", formData);
             router.push("/thanks");
           } else {
           }
         } else {
-          
+          const responseDataPromise = response.json();
+          responseDataPromise.then((data) => {
+            console.error(
+              "Submission failed with status:",
+              response.status,
+              "and message:",
+              data.message
+            );
+            alert("Submission failed: " + data.message);
+          });
           if (response.status === 400 || response.status === 500) {
-            
+            alert("Submission failed. Please check your input and try again.");
           } else if (response.status === 401) {
-            
           }
         }
       })
       .catch((error) => {
-        
+        alert("Submission failed. Please check your input and try again.");
         console.error("Error:", error);
       });
     console.log("Form submitted:", formData);
@@ -158,7 +176,7 @@ const EnquiryForm: React.FC = () => {
             </Grid>
             <Grid item xs={9}>
               <TextField
-              id="mobileNumber"
+                id="mobileNumber"
                 label="Mobile Number"
                 name="mobileNumber"
                 value={formData.mobileNumber}
