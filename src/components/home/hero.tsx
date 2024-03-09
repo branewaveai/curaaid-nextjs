@@ -1,6 +1,7 @@
 import { StyledButton } from "@/components/styled-button";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import {
+  Alert,
   Button,
   FormControl,
   InputLabel,
@@ -9,6 +10,8 @@ import {
   SelectChangeEvent,
   TextField,
 } from "@mui/material";
+import Snackbar from "@mui/material/Snackbar";
+import { ChangeEvent } from "react";
 import Box from "@mui/material/Box";
 import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
@@ -34,8 +37,8 @@ interface ExpItemProps {
 interface FormData {
   name: string;
   email: string;
-  country: string;
-  mobileNumber: string;
+  countryName: string;
+  phoneNumber: string;
   medicalRequirements: string;
 }
 
@@ -99,22 +102,63 @@ const ExpItem: FC<ExpItemProps> = ({ item }) => {
 
 const HomeHero: FC = () => {
   const router = useRouter();
-  const handleSubmit = (event: React.FormEvent): void => {
+  const handleSubmit = async (event: React.FormEvent): Promise<void> => {
     event.preventDefault();
     // Handle form submission logic here
     console.log("Form submitted:", formData);
-    router.push("/thanks");
+    try {
+      const response = await fetch(
+        "https://staging.curaaid.com/submit-enquiry",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) {
+        if (response.status === 503) {
+          console.log("incomplete");
+          handleClick();
+        } else {
+          throw new Error("Network response was not ok");
+        }
+      } else {
+        router.push("/thanks");
+      }
+
+      const data = await response.json();
+      console.log("Response:", data);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
+  const [open, setOpen] = useState(false);
+
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
-    country: "",
-    mobileNumber: "",
+    countryName: "",
+    phoneNumber: "",
     medicalRequirements: "",
   });
   const [file, setFile] = useState<File | null>(null);
+  const handleClick = () => {
+    setOpen(true);
+  };
+  const handleClose = (
+    event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setOpen(false);
+  };
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files && event.target.files[0];
     if (selectedFile) {
       setFile(selectedFile);
@@ -131,6 +175,7 @@ const HomeHero: FC = () => {
       | SelectChangeEvent<string>
   ): void => {
     const { name, value } = "target" in event ? event.target : event;
+
     setFormData({ ...formData, [name as string]: value as string });
   };
 
@@ -150,6 +195,24 @@ const HomeHero: FC = () => {
           spacing={0}
           sx={{ flexDirection: { xs: "column", md: "unset" } }}
         >
+          <Snackbar
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={open}
+            autoHideDuration={5000}
+            onClose={handleClose}
+          >
+            <Alert
+              onClose={handleClose}
+              severity="error"
+              variant="filled"
+              sx={{ width: "100%" }}
+            >
+              Form Not Submitted!
+            </Alert>
+          </Snackbar>
           <Grid item xs={12} md={7}>
             <Box
               sx={{
@@ -342,8 +405,6 @@ const HomeHero: FC = () => {
               </Box>
             </Box> */}
             <Box sx={{ lineHeight: 0 }}>
-              {/* <Image src="/images/home-hero.jpg" width={775} height={787} alt="Hero img" /> */}
-              {/* <EnquiryForm /> */}
               <div>
                 <Typography
                   variant="h2"
@@ -385,8 +446,8 @@ const HomeHero: FC = () => {
                     <Select
                       labelId="country-label"
                       label="Select Country"
-                      name="country"
-                      value={formData.country}
+                      name="countryName"
+                      value={formData.countryName}
                       onChange={handleChange}
                     >
                       {countries.map((country) => (
@@ -400,7 +461,7 @@ const HomeHero: FC = () => {
                     <Grid item xs={3}>
                       <TextField
                         label="ISD Code"
-                        value={formData.country}
+                        value={formData.countryName}
                         variant="outlined"
                         margin="normal"
                         InputProps={{
@@ -411,13 +472,17 @@ const HomeHero: FC = () => {
                     <Grid item xs={9}>
                       <TextField
                         label="Mobile Number"
-                        name="mobileNumber"
-                        value={formData.mobileNumber}
+                        name="phoneNumber"
+                        value={formData.phoneNumber}
                         onChange={handleChange}
                         variant="outlined"
                         margin="normal"
                         fullWidth
-                        type="tel"
+                        type="number"
+                        inputProps={{
+                          minLength: 7, // Set minimum length to 7 characters
+                          maxLength: 15, // Set maximum length to 15 characters
+                        }}
                       />
                     </Grid>
                   </Grid>
