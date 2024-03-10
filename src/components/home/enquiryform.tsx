@@ -1,3 +1,4 @@
+'use client'
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import {
   Box,
@@ -12,7 +13,7 @@ import {
 import { SelectChangeEvent } from "@mui/material/Select";
 import Typography from "@mui/material/Typography";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import doPostRequest from "../../utils/apiRequest";
 
 interface FormData {
@@ -21,6 +22,7 @@ interface FormData {
   country: string;
   mobileNumber: string;
   medicalRequirements: string;
+  countryCode: string;
 }
 
 const countries = [
@@ -41,9 +43,17 @@ const EnquiryForm: React.FC = () => {
     country: "",
     mobileNumber: "",
     medicalRequirements: "",
+    countryCode: "",
   });
   const [file, setFile] = useState<File | null>(null);
+  const [submitted, setSubmitted] = useState(false);
 
+  useEffect(() => {
+    if (router.pathname === "/thanks") {
+      const newPath = "/";
+      window.history.replaceState(null, "", newPath);
+    }
+  }, [router]);
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files && event.target.files[0];
     if (selectedFile) {
@@ -60,10 +70,25 @@ const EnquiryForm: React.FC = () => {
       | SelectChangeEvent<string>
   ): void => {
     const { name, value } = event.target as { name?: string; value: string };
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name as string]: value,
-    }));
+    if (name === "country") {
+      console.log("in");
+      const selectedCountry = countries.find(
+        (country) => country.label === value
+      );
+      if (selectedCountry) {
+        console.log(selectedCountry.code);
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          [name as string]: value,
+          countryCode: selectedCountry.code,
+        }));
+      }
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name as string]: value,
+      }));
+    }
   };
 
   const handleSubmit = (event: React.FormEvent): void => {
@@ -97,11 +122,10 @@ const EnquiryForm: React.FC = () => {
     )
       .then((response) => {
         if (response.ok) {
-          
-
           if (response.status === 200) {
             console.log("Form submitted:", formData);
-            router.replace("/thanks");
+            setSubmitted(true);
+            router.push("/thanks");
           } else {
           }
         } else {
@@ -185,7 +209,7 @@ const EnquiryForm: React.FC = () => {
             <Grid item xs={3}>
               <TextField
                 label="ISD Code"
-                value={formData.country}
+                value={formData.countryCode}
                 variant="outlined"
                 margin="normal"
                 InputProps={{
