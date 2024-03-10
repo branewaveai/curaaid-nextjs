@@ -8,6 +8,7 @@ import { CacheProvider } from '@emotion/react'
 import { CssBaseline } from '@mui/material'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import Script from 'next/script';
 import { FC } from 'react'
 import 'slick-carousel/slick/slick.css'
 // import 'slick-carousel/slick/slick-theme.css'
