@@ -1,3 +1,4 @@
+import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import {
   Box,
   Button,
@@ -9,6 +10,7 @@ import {
   TextField,
 } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
+import Typography from "@mui/material/Typography";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import doPostRequest from "../../utils/apiRequest";
@@ -29,7 +31,6 @@ const countries = [
   { code: "+251", label: "Ethiopia" },
   { code: "+249", label: "Sudan" },
   { code: "+1", label: "United States" },
-  // Add more countries as needed
 ];
 
 const EnquiryForm: React.FC = () => {
@@ -41,7 +42,14 @@ const EnquiryForm: React.FC = () => {
     mobileNumber: "",
     medicalRequirements: "",
   });
+  const [file, setFile] = useState<File | null>(null);
 
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = event.target.files && event.target.files[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
+  };
   const handleChange = (
     event:
       | React.ChangeEvent<
@@ -89,11 +97,11 @@ const EnquiryForm: React.FC = () => {
     )
       .then((response) => {
         if (response.ok) {
-          // Successful response
+          
 
           if (response.status === 200) {
             console.log("Form submitted:", formData);
-            router.push("/thanks");
+            router.replace("/thanks");
           } else {
           }
         } else {
@@ -123,7 +131,18 @@ const EnquiryForm: React.FC = () => {
   return (
     <Box sx={{ lineHeight: 0 }}>
       <div>
-        <h2>Reach out today to plan your medical journey</h2>
+        <Typography
+          component="h2"
+          sx={{
+            color: "black",
+            fontSize: "1.5rem",
+            fontWeight: 700,
+            mb: 0.5,
+            textAlign: "center",
+          }}
+        >
+          Reach out today to plan your medical journey
+        </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
             label="Your Name"
@@ -186,9 +205,8 @@ const EnquiryForm: React.FC = () => {
                 required
                 fullWidth
                 type="tel"
-                
                 inputProps={{
-                  minLength: 7, 
+                  minLength: 7,
                   maxLength: 15,
                 }}
               />
@@ -205,6 +223,23 @@ const EnquiryForm: React.FC = () => {
             multiline
             rows={4}
           />
+          <Button
+            component="label"
+            role={undefined}
+            variant="contained"
+            tabIndex={-1}
+            startIcon={<CloudUploadIcon />}
+            fullWidth
+          >
+            {file ? `${file.name}` : "Upload file"}
+            <input
+              type="file"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+            />
+
+            {!file && <> (No file selected)</>}
+          </Button>
           <Button
             type="submit"
             variant="contained"

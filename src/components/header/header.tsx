@@ -13,6 +13,12 @@ const Header: FC = () => {
   const { breakpoints } = useTheme()
   const matchMobileView = useMediaQuery(breakpoints.down('md'))
 
+  const handleNavigationClick = () => {
+    if (matchMobileView) {
+      setVisibleMenu(false);
+    }
+  };
+
   return (
     <Box sx={{ backgroundColor: 'background.paper' }}>
       <Container sx={{ py: { xs: 2, md: 3 } }}>
@@ -44,7 +50,7 @@ const Header: FC = () => {
             }}
           >
             <Box /> {/* Magic space */}
-            <Navigation />
+            <Navigation onClick={handleNavigationClick} /> {/* Pass onClick handler to Navigation component */}
             <AuthNavigation />
             {visibleMenu && matchMobileView && (
               <IconButton

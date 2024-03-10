@@ -19,3 +19,9 @@
 
 # Optional: Editor configuration files
 .editorconfig
+
+.package.json
+
+.package-lock.json
+
+yarn.lock

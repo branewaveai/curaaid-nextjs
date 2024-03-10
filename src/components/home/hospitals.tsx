@@ -1,17 +1,15 @@
+import { MentorCardItem } from '@/components/mentor'
 import IconArrowBack from '@mui/icons-material/ArrowBack'
 import IconArrowForward from '@mui/icons-material/ArrowForward'
-import { IconButton, useMediaQuery } from '@mui/material'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
+import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import { styled, useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { FC } from 'react'
 import Slider, { Settings } from 'react-slick'
-
-// import { CourseCardItem } from '@/components/course'
-import { data } from './popular-course.data'
-import { DoctorCardItem } from '../doctor'
+import { data } from './mentors.data'
 
 interface SliderArrowArrow {
   onClick?: () => void
@@ -27,7 +25,7 @@ const SliderArrow: FC<SliderArrowArrow> = (props) => {
         backgroundColor: 'background.paper',
         color: 'primary.main',
         '&:hover': { backgroundColor: 'primary.main', color: 'primary.contrastText' },
-        bottom: { xs: '-70px !important', md: '-28px !important' },
+        bottom: '-28px !important',
         left: 'unset !important',
         right: type === 'prev' ? '60px !important' : '0 !important',
         zIndex: 10,
@@ -59,13 +57,13 @@ const StyledDots = styled('ul')(({ theme }) => ({
   },
 }))
 
-const HomePopularCourse: FC = () => {
+const HomeOurMentors: FC = () => {
   const { breakpoints } = useTheme()
   const matchMobileView = useMediaQuery(breakpoints.down('md'))
 
   const sliderConfig: Settings = {
     infinite: true,
-    autoplay: true,
+    // autoplay: true,
     speed: 300,
     slidesToShow: matchMobileView ? 1 : 3,
     slidesToScroll: 1,
@@ -80,45 +78,32 @@ const HomePopularCourse: FC = () => {
 
   return (
     <Box
-      id="popular-course"
+      id="hospitals"
       sx={{
         pt: {
           xs: 6,
           md: 8,
         },
-        pb: 14,
-        backgroundColor: 'background.default',
+        pb: {
+          xs: 8,
+          md: 12,
+        },
+        backgroundColor: '#ecf3f3',
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={3}>
-            <Box
-              sx={{
-                height: '100%',
-                width: { xs: '100%', md: '90%' },
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: { xs: 'center', md: 'flex-start' },
-              }}
-            >
-              <Typography variant="h1" sx={{ mt: { xs: 0, md: -5 }, fontSize: { xs: 30, md: 48 } }}>
-                Our Expert Doctors
-              </Typography>
-            </Box>
-          </Grid>
+        <Typography variant="h1" sx={{ fontSize: 40 }}>
+          Explore Our Network Of Best Hospitals
+        </Typography>
 
-          <Grid item xs={12} md={9}>
-            <Slider {...sliderConfig}>
-              {data.map((item) => (
-                <DoctorCardItem key={String(item.id)} item={item} />
-              ))}
-            </Slider>
-          </Grid>
-        </Grid>
+        <Slider {...sliderConfig}>
+          {data.map((item) => (
+            <MentorCardItem key={String(item.id)} item={item} />
+          ))}
+        </Slider>
       </Container>
     </Box>
   )
 }
 
-export default HomePopularCourse
+export default HomeOurMentors
