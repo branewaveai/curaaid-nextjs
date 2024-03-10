@@ -1,12 +1,12 @@
 import {
-    Box,
-    Button,
-    FormControl,
-    Grid,
-    InputLabel,
-    MenuItem,
-    Select,
-    TextField,
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
 } from "@mui/material";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { useRouter } from "next/router";
@@ -62,7 +62,7 @@ const EnquiryForm: React.FC = () => {
     event.preventDefault();
     const { name, email, country, mobileNumber, medicalRequirements } =
       formData;
-    const isValidMobileNumber = /^\d{7,10}$/.test(mobileNumber);
+    const isValidMobileNumber = /^\d{7,15}$/.test(mobileNumber);
 
     if (!isValidMobileNumber) {
       console.warn("Invalid mobile number");
@@ -186,6 +186,11 @@ const EnquiryForm: React.FC = () => {
                 required
                 fullWidth
                 type="tel"
+                
+                inputProps={{
+                  minLength: 7, 
+                  maxLength: 15,
+                }}
               />
             </Grid>
           </Grid>
