@@ -196,7 +196,7 @@ const HomeHero: FC = () => {
               </Box>
               <Box sx={{ "& button": { mr: 2 } }}>
                 <ScrollLink
-                  to="popular-treatment"
+                  to="popular-treatments"
                   spy={true}
                   smooth={true}
                   offset={0}

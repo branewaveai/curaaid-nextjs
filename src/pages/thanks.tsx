@@ -1,29 +1,33 @@
-import Footer from '@/components/footer/footer';
-import Header from '@/components/header/headerstmp';
-import { Box } from '@mui/material';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React from 'react';
+import Footer from "@/components/footer/footer";
+import Header from "@/components/header/headerstmp";
+import { Box } from "@mui/material";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useEffect } from "react";
 
 const ThanksPage: React.FC = () => {
   const router = useRouter();
-
-
-const navigateToLandingPage = () => {
-  router.push('/');
-}
+  useEffect(() => {
+    if (router.pathname === "/thanks") {
+      const newPath = "/";
+      window.history.replaceState(null, "", newPath);
+    }
+  }, [router]);
+  const navigateToLandingPage = () => {
+    router.push("/");
+  };
   return (
     <>
-    <Box component="main">
-      <Header />
-      <div>
-      <h1>Thanks</h1>
-      <Link href="/#popular-treatments">
-  <a>Go back to landing page</a>
-</Link>
-    </div>
-      <Footer />
-    </Box>
+      <Box component="main">
+        <Header />
+        <div>
+          <h1>Thanks</h1>
+          <Link href="/#popular-treatments">
+            <a>Go back to landing page</a>
+          </Link>
+        </div>
+        <Footer />
+      </Box>
     </>
   );
 };
