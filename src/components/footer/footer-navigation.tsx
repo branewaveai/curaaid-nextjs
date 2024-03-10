@@ -1,10 +1,9 @@
-import React, { FC } from 'react'
-import Link from 'next/link'
+import { FooterSectionTitle } from '@/components/footer'
+import type { Navigation } from '@/interfaces/navigation'
 import Grid from '@mui/material/Grid'
 import MuiLink from '@mui/material/Link'
-import type { Navigation } from '@/interfaces/navigation'
-import { navigations as headerNavigations } from '@/components/navigation/navigation.data'
-import { FooterSectionTitle } from '@/components/footer'
+import Link from 'next/link'
+import { FC } from 'react'
 
 const courseMenu: Array<Navigation> = [
   {
@@ -25,7 +24,24 @@ const courseMenu: Array<Navigation> = [
   },
 ]
 
-const pageMenu = headerNavigations
+const pageMenu : Array<Navigation> = [
+  {
+    label: 'Home',
+    path: '#',
+  },
+  {
+    label: 'Treatments',
+    path: '/#popular-treatments',
+  },
+  {
+    label: 'Hospitals',
+    path: '/#hospitals',
+  },
+  {
+    label: 'Doctors',
+    path: '/#expert-doctors',
+  },
+]
 
 const companyMenu: Array<Navigation> = [
   { label: 'Contact Us', path: '#' },

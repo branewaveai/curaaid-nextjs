@@ -1,5 +1,4 @@
 import type { Navigation } from '@/interfaces/navigation'
-
 export const navigations: Navigation[] = [
   {
     label: 'Home',
@@ -7,14 +6,14 @@ export const navigations: Navigation[] = [
   },
   {
     label: 'Treatments',
-    path: 'popular-treatments', // '/popular-course',
+    path: '/#popular-treatments', // '/popular-course',
   },
   {
     label: 'Hospitals',
-    path: 'hospitals', // '/testimonial',
+    path: '/#hospitals', // '/testimonial',
   },
   {
     label: 'Doctors',
-    path: 'expert-doctors', // '/mentors',
+    path: '/#expert-doctors', // '/mentors',
   },
 ]

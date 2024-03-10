@@ -16,6 +16,7 @@ const ThanksPage: React.FC = () => {
   const navigateToLandingPage = () => {
     router.push("/");
   };
+
   return (
     <>
       <Box component="main">
@@ -72,6 +73,7 @@ const ThanksPage: React.FC = () => {
               <Typography variant="h2">
                 We will get back to you soon.
               </Typography>
+              <Link href="/">
               <Button
                 variant="outlined"
                 style={{
@@ -84,6 +86,7 @@ const ThanksPage: React.FC = () => {
               >
                 Back Home{" "}
               </Button>
+              </Link>
               <Typography variant="h3" width="30%">
                 Don't let your medical expenses eat into your savings
               </Typography>
