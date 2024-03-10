@@ -1,4 +1,5 @@
 import { Logo } from '@/components/logo'
+import { AuthNavigation, Navigation } from '@/components/navigation'
 import { Close, Menu } from '@mui/icons-material'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
@@ -11,7 +12,11 @@ const Header: FC = () => {
   const [visibleMenu, setVisibleMenu] = useState<boolean>(false)
   const { breakpoints } = useTheme()
   const matchMobileView = useMediaQuery(breakpoints.down('md'))
-
+  const handleNavigationClick = () => {
+    if (matchMobileView) {
+      setVisibleMenu(false);
+    }
+  };
   return (
     <Box sx={{ backgroundColor: 'background.paper' }}>
       <Container sx={{ py: { xs: 2, md: 3 } }}>
@@ -43,6 +48,8 @@ const Header: FC = () => {
             }}
           >
             <Box /> {/* Magic space */}
+            <Navigation onClick={handleNavigationClick} /> {/* Pass onClick handler to Navigation component */}
+            <AuthNavigation />
             {visibleMenu && matchMobileView && (
               <IconButton
                 sx={{

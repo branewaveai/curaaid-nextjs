@@ -8,8 +8,8 @@ import Typography from '@mui/material/Typography'
 import { styled, useTheme } from '@mui/material/styles'
 import { FC } from 'react'
 import Slider, { Settings } from 'react-slick'
-import { data } from './treatment.data'
 import TreatmentCardItem from '../treatment/treatment-card-item'
+import { data } from './treatment.data'
 
 interface SliderArrowArrow {
   onClick?: () => void
@@ -78,7 +78,7 @@ const HomeTreatment: FC = () => {
 
   return (
     <Box
-      id="popular-treatment"
+      id="popular-treatments"
       sx={{
         pt: {
           xs: 6,

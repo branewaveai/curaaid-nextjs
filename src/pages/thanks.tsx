@@ -18,7 +18,7 @@ const navigateToLandingPage = () => {
       <Header />
       <div>
       <h1>Thanks</h1>
-      <Link href="/#specific-section">
+      <Link href="/#popular-treatments">
   <a>Go back to landing page</a>
 </Link>
     </div>

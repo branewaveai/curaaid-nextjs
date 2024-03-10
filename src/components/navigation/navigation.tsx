@@ -1,9 +1,15 @@
-import React, { FC } from 'react'
-import Box from '@mui/material/Box'
-import { Link as ScrollLink } from 'react-scroll'
-import { navigations } from './navigation.data'
-
-const Navigation: FC = () => {
+import Box from '@mui/material/Box';
+import { FC } from 'react';
+import { Link as ScrollLink } from 'react-scroll';
+import { navigations } from './navigation.data';
+// import { navigations } from './navigation.data.thanks';
+interface NavigationProps {
+  onClick: () => void;
+}
+const Navigation:FC<NavigationProps> = ({ onClick }) => {
+  const handleNavItemClick = () => {
+    onClick();
+  };
   return (
     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
       {navigations.map(({ path: destination, label }) => (
@@ -15,6 +21,7 @@ const Navigation: FC = () => {
           spy={true}
           smooth={true}
           duration={350}
+          onClick={handleNavItemClick}
           sx={{
             position: 'relative',
             color: 'text.disabled',
