@@ -1,27 +1,15 @@
 import { StyledButton } from "@/components/styled-button";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  TextField,
-} from "@mui/material";
 import Box from "@mui/material/Box";
-import { styled } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { styled } from "@mui/material/styles";
 
-import Image from "next/image";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Link as ScrollLink } from "react-scroll";
 // import EnquiryForm from './EnquiryFrom'
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import EnquiryForm from "./enquiryform";
 
 interface Exp {
   label: string;
@@ -30,26 +18,6 @@ interface Exp {
 interface ExpItemProps {
   item: Exp;
 }
-
-interface FormData {
-  name: string;
-  email: string;
-  country: string;
-  mobileNumber: string;
-  medicalRequirements: string;
-}
-
-const countries = [
-  { code: "+91", label: "India" },
-  { code: "+254", label: "Kenya" },
-  { code: "+255", label: "Tanzania" },
-  { code: "+234", label: "Nigeria" },
-  { code: "+251", label: "Ethiopia" },
-  { code: "+249", label: "Sudan" },
-  { code: "+1", label: "United States" },
-
-  // Add more countries as needed
-];
 
 const exps: Array<Exp> = [
   {
@@ -98,42 +66,7 @@ const ExpItem: FC<ExpItemProps> = ({ item }) => {
 };
 
 const HomeHero: FC = () => {
-  const router = useRouter();
-  const handleSubmit = (event: React.FormEvent): void => {
-    event.preventDefault();
-    // Handle form submission logic here
-    console.log("Form submitted:", formData);
-    router.push("/thanks");
-  };
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    country: "",
-    mobileNumber: "",
-    medicalRequirements: "",
-  });
-  const [file, setFile] = useState<File | null>(null);
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files && event.target.files[0];
-    if (selectedFile) {
-      setFile(selectedFile);
-    }
-  };
-
-  const handleChange = (
-    event:
-      | React.ChangeEvent<
-          | HTMLInputElement
-          | HTMLTextAreaElement
-          | { name?: string; value: unknown }
-        >
-      | SelectChangeEvent<string>
-  ): void => {
-    const { name, value } = "target" in event ? event.target : event;
-    setFormData({ ...formData, [name as string]: value as string });
-  };
-
+  
   return (
     <Box
       id="hero"
@@ -341,126 +274,7 @@ const HomeHero: FC = () => {
                 </Typography>
               </Box>
             </Box> */}
-            <Box sx={{ lineHeight: 0 }}>
-              {/* <Image src="/images/home-hero.jpg" width={775} height={787} alt="Hero img" /> */}
-              {/* <EnquiryForm /> */}
-              <div>
-                <Typography
-                  variant="h2"
-                  noWrap
-                  sx={{
-                    display: "-webkit-box",
-                    WebkitBoxOrient: "vertical",
-                    overflow: "hidden",
-                    whiteSpace: "normal",
-                    WebkitLineClamp: 2,
-                  }}
-                >
-                  Reach out to plan your medical journey
-                </Typography>
-                <form onSubmit={handleSubmit}>
-                  <TextField
-                    label="Your Name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                  />
-                  <TextField
-                    label="Your Email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    variant="outlined"
-                    margin="normal"
-                    required
-                    fullWidth
-                    type="email"
-                  />
-                  <FormControl fullWidth margin="normal" required>
-                    <InputLabel id="country-label">Select Country</InputLabel>
-                    <Select
-                      labelId="country-label"
-                      label="Select Country"
-                      name="country"
-                      value={formData.country}
-                      onChange={handleChange}
-                    >
-                      {countries.map((country) => (
-                        <MenuItem key={country.code} value={country.code}>
-                          {country.label}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                  <Grid container spacing={2}>
-                    <Grid item xs={3}>
-                      <TextField
-                        label="ISD Code"
-                        value={formData.country}
-                        variant="outlined"
-                        margin="normal"
-                        InputProps={{
-                          readOnly: true,
-                        }}
-                      />
-                    </Grid>
-                    <Grid item xs={9}>
-                      <TextField
-                        label="Mobile Number"
-                        name="mobileNumber"
-                        value={formData.mobileNumber}
-                        onChange={handleChange}
-                        variant="outlined"
-                        margin="normal"
-                        fullWidth
-                        type="tel"
-                      />
-                    </Grid>
-                  </Grid>
-                  <TextField
-                    label="Describe Medical Requirements"
-                    name="medicalRequirements"
-                    value={formData.medicalRequirements}
-                    onChange={handleChange}
-                    variant="outlined"
-                    margin="normal"
-                    fullWidth
-                    multiline
-                    rows={4}
-                  />
-                  <Button
-                    component="label"
-                    role={undefined}
-                    variant="contained"
-                    tabIndex={-1}
-                    startIcon={<CloudUploadIcon />}
-                    fullWidth
-                  >
-                    {file ? `${file.name}` : "Upload file"}
-                    <input
-                      type="file"
-                      style={{ display: "none" }}
-                      onChange={handleFileChange}
-                    />
-
-                    {!file && <> (No file selected)</>}
-                  </Button>
-
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    style={{ marginTop: 20 }}
-                  >
-                    Submit
-                  </Button>
-                </form>
-              </div>
-            </Box>
+            <EnquiryForm/>
           </Grid>
         </Grid>
 
