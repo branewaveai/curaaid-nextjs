@@ -30,8 +30,21 @@ const App: FC<AppPropsWithLayout> = (props: AppPropsWithLayout) => {
     <CacheProvider value={emotionCache}>
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
-        <title>Curaaid</title>
+        <title>CuraAid</title>
       </Head>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=AW-16480308560"
+        strategy="lazyOnload"
+      />
+      <Script id="google-analytics-script" strategy="lazyOnload">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'AW-16480308560');
+        `}
+      </Script>
       <MUIProvider>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
