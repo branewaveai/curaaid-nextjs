@@ -1,4 +1,3 @@
-'use client'
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import {
   Box,
@@ -26,13 +25,16 @@ interface FormData {
 }
 
 const countries = [
+  { code: "+251", label: "Ethiopia" },
+  { code: "+233", label: "Ghana" },
   { code: "+91", label: "India" },
   { code: "+254", label: "Kenya" },
-  { code: "+255", label: "Tanzania" },
   { code: "+234", label: "Nigeria" },
-  { code: "+251", label: "Ethiopia" },
+  { code: "+27", label: "South Africa" },
   { code: "+249", label: "Sudan" },
+  { code: "+255", label: "Tanzania" },
   { code: "+1", label: "United States" },
+  { code: "+263", label: "Zimbabwe" },
 ];
 
 const EnquiryForm: React.FC = () => {
@@ -95,7 +97,7 @@ const EnquiryForm: React.FC = () => {
     event.preventDefault();
     const { name, email, country, mobileNumber, medicalRequirements } =
       formData;
-    const isValidMobileNumber = /^\d{7,15}$/.test(mobileNumber);
+    const isValidMobileNumber = /^\d{3,15}$/.test(mobileNumber);
 
     if (!isValidMobileNumber) {
       console.warn("Invalid mobile number");
@@ -230,7 +232,7 @@ const EnquiryForm: React.FC = () => {
                 fullWidth
                 type="tel"
                 inputProps={{
-                  minLength: 7,
+                  minLength: 3,
                   maxLength: 15,
                 }}
               />
