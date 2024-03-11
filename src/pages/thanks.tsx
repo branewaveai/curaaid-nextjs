@@ -4,6 +4,7 @@ import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import Script from "next/script";
 
 const ThanksPage: React.FC = () => {
   const router = useRouter();
@@ -19,6 +20,16 @@ const ThanksPage: React.FC = () => {
 
   return (
     <>
+      <div>
+        <Script id="conversion-analytics-script" strategy="lazyOnload">
+          {`
+            gtag('event', 'conversion', {
+              'send_to': 'AW-16480308560/pEK6CJX2j5gZENCatrI9',
+              'transaction_id': ''
+            });
+          `}
+        </Script>
+      </div>
       <Box component="main">
         <Header />
         <div style={{ height: "100%" }}>
