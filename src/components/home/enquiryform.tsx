@@ -249,7 +249,7 @@ const EnquiryForm: React.FC = () => {
             multiline
             rows={4}
           />
-          <Button
+          {/* <Button
             component="label"
             role={undefined}
             variant="contained"
@@ -265,12 +265,12 @@ const EnquiryForm: React.FC = () => {
             />
 
             {!file && <> (No file selected)</>}
-          </Button>
+          </Button> */}
           <Button
             type="submit"
             variant="contained"
             color="primary"
-            style={{ marginTop: 20 }}
+            style={{ marginTop: 20, width: 150 }}
           >
             Submit
           </Button>

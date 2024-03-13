@@ -25,12 +25,12 @@ const exps: Array<Exp> = [
     value: "20+",
   },
   {
-    label: "Treatments Offered",
-    value: "20+",
+    label: "Hospitals Partner",
+    value: "10+",
   },
   {
     label: "Experienced Doctors",
-    value: "15+",
+    value: "25+",
   },
 ];
 const VisuallyHiddenInput = styled("input")({
@@ -194,7 +194,7 @@ const HomeHero: FC = () => {
                   }
                 </Typography>
               </Box>
-              <Box sx={{ "& button": { mr: 2 } }}>
+              <Box sx={{ "& button": { mr: 2, mb: 2 } }}>
                 <ScrollLink
                   to="popular-treatments"
                   spy={true}
@@ -210,22 +210,24 @@ const HomeHero: FC = () => {
                     Explore treatments
                   </StyledButton>
                 </ScrollLink>
-                <ScrollLink
+                {/* <ScrollLink
                   to="video-section"
                   spy={true}
                   smooth={true}
                   offset={0}
                   duration={350}
-                >
-                  <StyledButton
-                    color="primary"
-                    size="large"
-                    variant="outlined"
-                    startIcon={<PlayArrowIcon />}
-                  >
-                    Watch Testimonials
-                  </StyledButton>
-                </ScrollLink>
+                > */}
+                  <a href="https://www.youtube.com/@CuraAid" rel="noopener noreferrer">
+                    <StyledButton
+                      color="primary"
+                      size="large"
+                      variant="outlined"
+                      startIcon={<PlayArrowIcon />}
+                    >
+                      Watch Testimonials
+                    </StyledButton>
+                  </a>
+                {/* </ScrollLink> */}
               </Box>
             </Box>
           </Grid>

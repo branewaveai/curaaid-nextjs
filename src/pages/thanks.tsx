@@ -98,9 +98,11 @@ const ThanksPage: React.FC = () => {
                 Back Home{" "}
               </Button>
               </Link>
-              <Typography variant="h3" width="30%">
-                Don't let your medical expenses eat into your savings
-              </Typography>
+              <Box style={{backgroundColor: '#87CEEB', marginTop: "5vh",}}>
+                <Typography variant="h3" width="100%">
+                  Don't let your medical expenses eat into your savings
+                </Typography>
+              </Box>
             </Box>
           </Box>
         </div>

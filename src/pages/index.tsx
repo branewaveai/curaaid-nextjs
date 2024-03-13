@@ -25,9 +25,9 @@ const Home: NextPageWithLayout = () => {
   return (
     <>
       <DynamicHomeHero />
-      <DynamicHomeTreatment />
       <DynamicHomeOurMentors />
       <DynamicHomePopularCourse />
+      <DynamicHomeTreatment />
     </>
   );
 };
