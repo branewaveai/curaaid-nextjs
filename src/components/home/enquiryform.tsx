@@ -167,7 +167,7 @@ const EnquiryForm: React.FC = () => {
             textAlign: "center",
           }}
         >
-          Reach out today to plan your medical journey
+          Book your video consultation with our expert Doctors
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
