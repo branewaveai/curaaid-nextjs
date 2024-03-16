@@ -1,8 +1,7 @@
-import React, { FC } from 'react'
-import Image from 'next/image'
+import { Testimonial } from '@/interfaces/testimonial'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
-import { Testimonial } from '@/interfaces/testimonial'
+import { FC } from 'react'
 
 interface Props {
   item: Testimonial
@@ -10,55 +9,57 @@ interface Props {
 
 const TestimonialItem: FC<Props> = ({ item }) => {
   return (
-    <Box sx={{ padding: '30px' }}>
-      <Box sx={{ mb: 2 }}>
-        <Typography component="h2" variant="h4" sx={{ mb: 2 }}>
-          {item.title}
-        </Typography>
-        <Typography sx={{ mb: 2, color: 'text.secondary' }}>{item.content}</Typography>
-      </Box>
+    <Box
+      sx={{
+        px: 1,
+        py: 1,
+      }}
+    >
       <Box
         sx={{
-          boxShadow: 1,
-          borderRadius: 1,
-          px: 2,
-          py: 2,
-          overflow: 'hidden',
-          display: 'flex',
-          alignItems: 'center',
-          width: 270,
-          backgroundColor: 'background.paper',
+          p: 1,
+          backgroundColor: "background.paper",
+          borderRadius: 4,
+          transition: (theme) => theme.transitions.create(["box-shadow"]),
+          "&:hover": {
+            boxShadow: 2,
+          },
         }}
       >
-        <Box
-          sx={{
-            borderRadius: '50%',
-            height: 52,
-            width: 52,
-            overflow: 'hidden',
-            mr: 2,
-
-            '& img': {
-              width: '100%',
-            },
+      <div style={{ maxWidth: "100%", padding: "0" }}>
+      {/* <h2>Video Testimonials</h2> */}
+        <div
+          style={{
+            position: "relative",
+            paddingTop: "56.25%",
+            overflow: "hidden",
           }}
         >
-          <Image
-            src={`/images/avatars/${item.user.photo}`}
-            width={100}
-            height={100}
-            quality={97}
-            alt={item.user.name}
-          />
-        </Box>
-        <Box>
-          <Typography variant="h6">{item.user.name}</Typography>
-          <Typography variant="subtitle1" sx={{ color: 'text.secondary' }}>
-            {item.user.professional}
+          <iframe
+            width="100%"
+            height="100%"
+            src={`https://www.youtube.com/embed/${item.id}`}
+            title="YouTube video player"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              top: "0",
+              left: "0",
+            }}
+          ></iframe>
+        </div>
+      </div>
+      {/* <Image src={item.photo as string} width={570} height={427} alt={'Mentor ' + item.id} /> */}
+
+        <Box sx={{ mb: 2 }} style={{marginTop: "5px"}}>
+          <Typography component="h2" variant="h4" sx={{ fontSize: "1.20rem" }}>
+            {item.title}
           </Typography>
         </Box>
       </Box>
     </Box>
-  )
-}
-export default TestimonialItem
+  );
+};
+export default TestimonialItem;

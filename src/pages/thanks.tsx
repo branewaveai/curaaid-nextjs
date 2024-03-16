@@ -3,17 +3,17 @@ import Header from "@/components/header/headerstmp";
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
 import Script from "next/script";
+import React from "react";
 
 const ThanksPage: React.FC = () => {
   const router = useRouter();
-  useEffect(() => {
-    if (router.pathname === "/thanks") {
-      const newPath = "/";
-      window.history.replaceState(null, "", newPath);
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   if (router.pathname === "/thanks") {
+  //     const newPath = "/";
+  //     window.history.replaceState(null, "", newPath);
+  //   }
+  // }, [router]);
   const navigateToLandingPage = () => {
     router.push("/");
   };
@@ -84,7 +84,7 @@ const ThanksPage: React.FC = () => {
               <Typography variant="h2">
                 We will get back to you soon.
               </Typography>
-              <Link href="/">
+              <Link href="/oncology">
               <Button
                 variant="outlined"
                 style={{
@@ -98,7 +98,7 @@ const ThanksPage: React.FC = () => {
                 Back Home{" "}
               </Button>
               </Link>
-              <Box style={{backgroundColor: '#87CEEB', marginTop: "5vh",}}>
+              <Box style={{ marginTop: "5vh",}}>
                 <Typography variant="h3" width="100%">
                   Don't let your medical expenses eat into your savings
                 </Typography>

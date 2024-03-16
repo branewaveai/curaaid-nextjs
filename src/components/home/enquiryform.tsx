@@ -1,4 +1,3 @@
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import {
   Box,
   Button,
@@ -24,7 +23,7 @@ interface FormData {
   countryCode: string;
 }
 
-const countries = [
+var countries = [
   { code: "+251", label: "Ethiopia" },
   { code: "+233", label: "Ghana" },
   { code: "+91", label: "India" },
@@ -35,6 +34,13 @@ const countries = [
   { code: "+255", label: "Tanzania" },
   { code: "+1", label: "United States" },
   { code: "+263", label: "Zimbabwe" },
+  { code: "+256", label: "Uganda" },
+  { code: "+260", label: "Zambia" },
+  { code: "+258", label: "Mozambique" },
+  { code: "+264", label: "Namibia" },
+  { code: "+235", label: "Chad" },
+  { code: "+249", label: "Sudan" },
+  { code: "+250", label: "Rwanda" },
 ];
 
 const EnquiryForm: React.FC = () => {
@@ -49,7 +55,17 @@ const EnquiryForm: React.FC = () => {
   });
   const [file, setFile] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
-
+  countries.sort((a, b) => {
+    const labelA = a.label.toUpperCase();
+    const labelB = b.label.toUpperCase();
+    if (labelA < labelB) {
+      return -1;
+    }
+    if (labelA > labelB) {
+      return 1;
+    }
+    return 0;
+  });
   useEffect(() => {
     if (router.pathname === "/thanks") {
       const newPath = "/";

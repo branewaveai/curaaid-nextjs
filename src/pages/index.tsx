@@ -5,13 +5,13 @@ import dynamic from "next/dynamic";
 
 const DynamicHomeHero = dynamic(() => import("../components/home/hero"));
 const DynamicHomeFeature = dynamic(() => import("../components/home/feature"));
-const DynamicHomePopularCourse = dynamic(
+const DynamicHomePopularDoctors = dynamic(
   () => import("../components/home/expert-doctors")
 );
 const DynamicHomeTestimonial = dynamic(
   () => import("../components/home/testimonial")
 );
-const DynamicHomeOurMentors = dynamic(
+const DynamicHomeOurHospitals = dynamic(
   () => import("../components/home/hospitals")
 );
 const DynamicHomeTreatment = dynamic(
@@ -25,9 +25,11 @@ const Home: NextPageWithLayout = () => {
   return (
     <>
       <DynamicHomeHero />
-      <DynamicHomeOurMentors />
-      <DynamicHomePopularCourse />
+      <DynamicHomeTestimonial/>
+      <DynamicHomeOurHospitals />
+      <DynamicHomePopularDoctors />
       <DynamicHomeTreatment />
+      
     </>
   );
 };
