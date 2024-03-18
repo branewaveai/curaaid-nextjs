@@ -29,6 +29,12 @@ class MyDocument extends Document<DocumentProps> {
           <meta content="#fbfbfb" name="apple-mobile-web-app-status-bar-style" />
           <meta content="yes" name="apple-mobile-web-app-capable" />
 
+          <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P5VXTJ2G');</script>
+
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
           <link
@@ -39,6 +45,8 @@ class MyDocument extends Document<DocumentProps> {
           {this.props.emotionStylesTags}
         </Head>
         <body>
+          <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5VXTJ2G"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <Main />
           <NextScript />
         </body>
