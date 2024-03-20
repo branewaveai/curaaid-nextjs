@@ -39,14 +39,20 @@ class MyDocument extends Document<DocumentProps> {
             }}
           />
           
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-GFDCYX880W"></script>
-          <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-          
-            gtag('config', 'G-GFDCYX880W');
-          </script>
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-GFDCYX880W"
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-GFDCYX880W');
+              `,
+            }}
+          />
           <meta charSet="utf-8" />
           <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
