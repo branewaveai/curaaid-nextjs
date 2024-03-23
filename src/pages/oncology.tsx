@@ -1,3 +1,4 @@
+import ContactUs from "@/components/ContactUs/page";
 import { MainLayout } from "@/components/layout";
 import { NextPageWithLayout } from "@/interfaces/layout";
 import dynamic from "next/dynamic";
@@ -29,7 +30,7 @@ const Home: NextPageWithLayout = () => {
       <DynamicHomeOurHospitals />
       <DynamicHomePopularDoctors />
       <DynamicHomeTreatment />
-      
+      <ContactUs/>
     </>
   );
 };
