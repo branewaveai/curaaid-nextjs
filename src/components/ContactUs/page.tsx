@@ -1,4 +1,4 @@
-import { LockClock } from "@mui/icons-material";
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import PhoneIcon from "@mui/icons-material/Phone";
 import { Grid } from "@mui/material";
 import Box from "@mui/material/Box";
@@ -9,6 +9,7 @@ const ContactUsPage: FC = () => {
   return (
     <>
       <Box
+      id="contact-us-page"
         sx={{
           maxWidth: "100%",
           mx: "auto",
@@ -25,19 +26,22 @@ const ContactUsPage: FC = () => {
             display: "flex",
             flexDirection: "column",
             px: { xs: 0, md: 30 },
-            //justifyContent: "center", // Center content horizontally
-            // alignItems: "center",
           })}
         >
-          <Typography variant="h4" sx={{ mb: 4, fontSize: 35 }}>
+          {/* <Typography variant="h4" sx={{ mb: 4, fontSize: 35 }}>
             Contact Us
-          </Typography>
+          </Typography> */}
 
           <Grid
             container
             spacing={2}
             sx={{ justifyContent: "center", alignItems: "center" }}
           >
+            <Grid item xs={12} md={4} >
+              <Typography variant="h4" sx={{ fontSize: 35 }}>
+                Contact Us
+              </Typography>
+            </Grid>
             <Grid item xs={12} md={4}>
               <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                 <PhoneIcon sx={{ mr: 2 }} />
@@ -66,7 +70,8 @@ const ContactUsPage: FC = () => {
 
             <Grid item xs={12} md={4}>
               <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <LockClock sx={{ mr: 2 }} />
+              
+                <AccessTimeIcon sx={{ mr: 2 }} />
                 <Typography variant="body1" sx={{ fontSize: 20 }}>
                   24 X 7
                   <br />
