@@ -75,17 +75,6 @@ const ContactUsPage: FC = () => {
               </Box>
               
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                <LockClock sx={{ mr: 2 }} />
-                <Typography variant="body1" sx={{ fontSize: 20 }}>
-                  24 X 7
-                  <br />
-                  <Box sx={{ fontSize: 15 }}> We are open</Box>
-                </Typography>
-              </Box>
-              
-            </Grid>
           </Grid>
         </Box>
       </Box>
