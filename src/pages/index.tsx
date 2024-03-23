@@ -30,6 +30,7 @@ const Home: NextPageWithLayout = () => {
       <DynamicHomePopularDoctors />
       <DynamicHomeTreatment />
       
+      
     </>
   );
 };

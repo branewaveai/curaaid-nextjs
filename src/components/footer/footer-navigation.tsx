@@ -44,7 +44,7 @@ const pageMenu : Array<Navigation> = [
 ]
 
 const companyMenu: Array<Navigation> = [
-  { label: 'Contact Us', path: '#' },
+  { label: 'Contact Us', path: '#contact-us-page' },
   { label: 'Privacy & Policy', path: '#' },
   { label: 'Term & Condition', path: '#' },
   { label: 'FAQ', path: '#' },
