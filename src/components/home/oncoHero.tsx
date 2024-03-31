@@ -22,7 +22,7 @@ interface ExpItemProps {
 const exps: Array<Exp> = [
   {
     label: "Patients served",
-    value: "20+",
+    value: "200+",
   },
   {
     label: "Hospitals Partner",
