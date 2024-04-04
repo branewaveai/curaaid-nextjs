@@ -21,16 +21,19 @@ const DynamicHomeTreatment = dynamic(
 const DynamicHomeNewsLetter = dynamic(
   () => import("../components/home/newsletter")
 );
-
+const DynamicTreatmentCost = dynamic(
+  () => import("../components/home/treatmentCost")
+);
 const Home: NextPageWithLayout = () => {
   return (
     <>
       <DynamicHomeHero />
-      <DynamicHomeTestimonial/>
+      <DynamicHomeTestimonial />
       <DynamicHomeOurHospitals />
+      <DynamicTreatmentCost />
       <DynamicHomePopularDoctors />
       <DynamicHomeTreatment />
-      <ContactUs/>
+      <ContactUs />
     </>
   );
 };
