@@ -1,0 +1,70 @@
+.horizontal-scrollable-list {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
+}
+
+.treatment-list {
+    display: flex;
+    flex-direction: row;
+}
+
+.treatment-info {
+    padding: 15px;
+}
+
+h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+}
+
+p {
+    margin: 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.treatment-card-bottom {
+    margin-top: 0;
+    width: 73%
+}
+
+.treatment-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 140px;
+    width: 100vw;
+    padding: 0;
+}
+
+.treatment-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    width: 70%;
+}
+
+.treatment {
+    flex: 1;
+    /* margin-right: 20px; */
+    padding: 20px;
+}
+
+.asd-closure-row {
+    display: flex;
+    flex-wrap: wrap;
+    border: #3586f0;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.asd-closure-box {
+    border: 1px solid #3586f0;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    align-items: center;
+    width: 30%;
+}

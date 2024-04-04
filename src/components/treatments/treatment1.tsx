@@ -2,7 +2,7 @@ import { Paper, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { CONST_KEYS, Treatments } from "../../config";
 import doPostRequest from "../../utils/apiRequest";
-// import "../components/styles/treatments.css";
+// import "./treatment.css";
 interface Treatment {
   id: string | number;
   name: string;
@@ -114,7 +114,6 @@ const TreatmentPage = () => {
           </div>
         ))
       )}
-      <div style={{ width: "100%" }}></div>
     </div>
   );
 };
