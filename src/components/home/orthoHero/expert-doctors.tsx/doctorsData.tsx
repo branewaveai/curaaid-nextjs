@@ -4,18 +4,30 @@ import type { Doctor } from "@/interfaces/doctor";
 export const data: Array<Doctor> = [
   {
     id: 1,
-    cover: "/images/mentors/harshad_purandare.jpeg",
-    title: "Dr. Harshad Purandare",
-    speciality: "Neuro Surgeon",
+    cover: "/images/mentors/taral_nagda.jpeg",
+    title: "Dr. Taral Nagda",
+    speciality: "Pediatric Orthopedic Surgeon",
     rating: 5,
-    ratingCount: 8,
-    price: 25,
-    category: "Beginner",
+    ratingCount: 15,
+    price: 30,
+    category: "Intermediate",
     location: "Mumbai, India",
     hospital: "Jupiter Hospital, Mumbai",
   },
   {
     id: 2,
+    cover: "/images/mentors/narayan_hulse.jpeg",
+    title: "Dr. Narayan Hulse",
+    speciality: "Senior Director Orthopaedic",
+    rating: 5,
+    ratingCount: 8,
+    price: 20,
+    category: "Beginner",
+    location: "Mumbai, India",
+    hospital: "Fortis Hospital, Bangalore",
+  },
+  {
+    id: 3,
     cover: "/images/mentors/amit_dhumale.jpeg",
     title: "Dr. Amit Dhumale",
     speciality: "Neuro Rehab",
@@ -27,7 +39,7 @@ export const data: Array<Doctor> = [
     hospital: "Jupiter Hospital, Mumbai",
   },
   {
-    id: 3,
+    id: 4,
     cover: "/images/mentors/priyank_patel.jpeg",
     title: "Dr. Priyank Patel",
     speciality: "Spine Surgeon",
@@ -39,7 +51,7 @@ export const data: Array<Doctor> = [
     hospital: "Jupiter Hospital, Mumbai",
   },
   {
-    id: 4,
+    id: 5,
     cover: "/images/mentors/ashutosh_singh.jpeg",
     title: "Dr. Ashutosh Singh",
     speciality: "Pediatric Cardiac Surgeon",
@@ -50,17 +62,6 @@ export const data: Array<Doctor> = [
     location: "Mumbai, India",
     hospital: "Jupiter Hospital, Mumbai",
   },
-  {
-    id: 5,
-    cover: "/images/mentors/taral_nagda.jpeg",
-    title: "Dr. Taral Nagda",
-    speciality: "Pediatric Orthopedic Surgeon",
-    rating: 5,
-    ratingCount: 15,
-    price: 30,
-    category: "Intermediate",
-    location: "Mumbai, India",
-    hospital: "Jupiter Hospital, Mumbai",
-  },
+  
   
 ];
