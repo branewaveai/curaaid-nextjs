@@ -54,10 +54,8 @@ const TreatmentPage = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
-        // Show dummy data if an error occurs
-        const dummyData: Treatment[] = [
-          /* Dummy treatments data */
-        ];
+        
+        const dummyData: Treatment[] = [];
         setTreatments(dummyData);
         setLoading(false);
       });
