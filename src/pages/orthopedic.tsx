@@ -4,10 +4,10 @@ import { NextPageWithLayout } from "@/interfaces/layout";
 import dynamic from "next/dynamic";
 // import { HomeFeature, HomeHero, HomePopularCourse, HomeTestimonial, HomeOurMentors, DynamicHomeNewsLetter } from '@/components/home'
 
-const DynamicHomeHero = dynamic(() => import("../components/home/oncoHero"));
+const DynamicHomeHero = dynamic(() => import("../components/home/orthoHero/page"));
 const DynamicHomeFeature = dynamic(() => import("../components/home/feature"));
 const DynamicHomePopularDoctors = dynamic(
-  () => import("../components/home/expert-doctors")
+  () => import("../components/home/orthoHero/expert-doctors.tsx")
 );
 const DynamicHomeTestimonial = dynamic(
   () => import("../components/home/testimonial")
@@ -30,7 +30,7 @@ const Home: NextPageWithLayout = () => {
       <DynamicHomeHero />
       <DynamicHomeTestimonial />
       <DynamicHomeOurHospitals />
-      <DynamicTreatmentCost />
+      {/* <DynamicTreatmentCost /> */}
       <DynamicHomePopularDoctors />
       <DynamicHomeTreatment />
       <ContactUs />

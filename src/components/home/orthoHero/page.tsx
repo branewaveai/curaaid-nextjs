@@ -9,7 +9,7 @@ import { styled } from "@mui/material/styles";
 import { FC } from "react";
 import { Link as ScrollLink } from "react-scroll";
 // import EnquiryForm from './EnquiryFrom'
-import EnquiryForm from "./enquiryform";
+import EnquiryForm from "../enquiryform";
 
 interface Exp {
   label: string;
@@ -65,7 +65,7 @@ const ExpItem: FC<ExpItemProps> = ({ item }) => {
   );
 };
 
-const OncoHero: FC = () => {
+const OrthoHero: FC = () => {
   return (
     <Box
       id="hero"
@@ -133,7 +133,7 @@ const OncoHero: FC = () => {
                       />
                     </Box>
                   </Typography>
-                  Cancer Care{" "}
+                   Treatment{" "}
                   <Typography
                     component="span"
                     sx={{
@@ -168,7 +168,7 @@ const OncoHero: FC = () => {
                     </svg>
                   </Typography>{" "}
                   <br />
-                  leading Oncologists
+                  Top Orthopaedic Doctors
                 </Typography>
               </Box>
               <Box sx={{ mb: 4, width: { xs: "100%", md: "70%" } }}>
@@ -289,7 +289,7 @@ const OncoHero: FC = () => {
         <Box sx={{ boxShadow: 2, py: 4, px: 7, borderRadius: 4 }}>
           <Grid container spacing={2}>
             {exps.map((item) => (
-              <Grid key={item.value} item xs={12} md={4}>
+              <Grid key={item.value} item xs={4} md={4}>
                 <ExpItem item={item} />
               </Grid>
             ))}
@@ -300,4 +300,4 @@ const OncoHero: FC = () => {
   );
 };
 
-export default OncoHero;
+export default OrthoHero;

@@ -183,7 +183,7 @@ const EnquiryForm: React.FC = () => {
             textAlign: "center",
           }}
         >
-          Book your video consultation with our expert Doctors
+          Book free consultation with our expert Doctors
         </Typography>
         <form onSubmit={handleSubmit}>
           <TextField
