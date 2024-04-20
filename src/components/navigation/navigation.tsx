@@ -1,27 +1,24 @@
-import Box from '@mui/material/Box';
-import { FC } from 'react';
-import { Link as ScrollLink } from 'react-scroll';
-import { navigations } from './navigation.data';
+
 // import { navigations } from './navigation.data.thanks';
+import Box from '@mui/material/Box';
+import Link from 'next/link'; // Import Link from next/link for Next.js routing
+import { FC } from 'react';
+import { navigations } from './navigation.data';
+
 interface NavigationProps {
   onClick: () => void;
 }
-const Navigation:FC<NavigationProps> = ({ onClick }) => {
+
+const Navigation: FC<NavigationProps> = ({ onClick }) => {
   const handleNavItemClick = () => {
     onClick();
   };
+
   return (
     <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' } }}>
       {navigations.map(({ path: destination, label }) => (
         <Box
-          component={ScrollLink}
           key={destination}
-          activeClass="current"
-          to={destination}
-          spy={true}
-          smooth={true}
-          duration={350}
-          onClick={handleNavItemClick}
           sx={{
             position: 'relative',
             color: 'text.disabled',
@@ -36,35 +33,43 @@ const Navigation:FC<NavigationProps> = ({ onClick }) => {
             ...(destination === '/' && {
               color: 'primary.main',
             }),
-
             '& > div': { display: 'none' },
-
             '&.current>div': { display: 'block' },
-
             '&:hover': {
               color: 'primary.main',
-              '&>div': {
-                display: 'block',
-              },
+              '&>div': { display: 'block' },
             },
           }}
         >
-          <Box
-            sx={{
-              position: 'absolute',
-              top: 12,
-              transform: 'rotate(3deg)',
-              '& img': { width: 44, height: 'auto' },
-            }}
-          >
-            {/* eslint-disable-next-line */}
-            <img src="/images/headline-curve.svg" alt="Headline curve" />
-          </Box>
-          {label}
+          <Link href={destination} passHref>
+            <Box
+              component="a"
+              onClick={handleNavItemClick}
+              sx={{
+                textDecoration: 'none',
+                color: 'inherit',
+                position: 'relative',
+                display: 'flex',
+                alignItems: 'center',
+              }}
+            >
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: 12,
+                  transform: 'rotate(3deg)',
+                  '& img': { width: 44, height: 'auto' },
+                }}
+              >
+                <img src="/images/headline-curve.svg" alt="Headline curve" />
+              </Box>
+              {label}
+            </Box>
+          </Link>
         </Box>
       ))}
     </Box>
-  )
-}
+  );
+};
 
-export default Navigation
+export default Navigation;
