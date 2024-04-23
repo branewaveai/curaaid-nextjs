@@ -5,29 +5,10 @@ import MuiLink from '@mui/material/Link'
 import Link from 'next/link'
 import { FC } from 'react'
 
-const courseMenu: Array<Navigation> = [
-  {
-    label: 'UI/UX Design',
-    path: '#',
-  },
-  {
-    label: 'Mobile Development',
-    path: '#',
-  },
-  {
-    label: 'Machine Learning',
-    path: '#',
-  },
-  {
-    label: 'Web Development',
-    path: '#',
-  },
-]
-
 const pageMenu : Array<Navigation> = [
   {
     label: 'Home',
-    path: '#',
+    path: '/',
   },
   {
     label: 'Treatments',
@@ -44,10 +25,10 @@ const pageMenu : Array<Navigation> = [
 ]
 
 const companyMenu: Array<Navigation> = [
-  { label: 'Contact Us', path: '#contact-us-page' },
-  { label: 'Privacy & Policy', path: '#' },
-  { label: 'Term & Condition', path: '#' },
-  { label: 'FAQ', path: '#' },
+  { label: 'Contact Us', path: '/contact-us' },
+  { label: 'Privacy Policy', path: '/privacy-policy' },
+  { label: 'Terms of Service', path: '/terms-of-service' },
+  { label: 'Refund Policy', path: '/refund-policy' },
 ]
 
 const treatmentsMenu: Array<Navigation> = [

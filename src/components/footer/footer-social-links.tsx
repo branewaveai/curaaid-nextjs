@@ -6,12 +6,12 @@ import { SocialLink } from '@/interfaces/social-link'
 export const socialLinks: SocialLink[] = [
   {
     name: 'Instagram',
-    link: '#',
+    link: 'https://www.instagram.com/curaaid/',
     icon: '/images/icons/instagram.svg',
   },
   {
     name: 'YouTube',
-    link: '#',
+    link: 'https://www.youtube.com/@CuraAid/',
     icon: '/images/icons/youtube.svg',
   },
   {
