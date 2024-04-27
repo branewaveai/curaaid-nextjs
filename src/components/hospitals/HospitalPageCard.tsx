@@ -1,7 +1,7 @@
-import { Button, Collapse, Dialog, DialogActions, DialogContent, DialogTitle, Paper, Typography } from "@mui/material";
-import { useRouter } from "next/router";
+import { Button, Collapse, Dialog, DialogActions, DialogContent, DialogTitle, Grid, Paper, Typography } from "@mui/material";
 import { useState } from "react";
 import EnquiryForm from "./EnquiryForm";
+import { LocationOnOutlined } from "@mui/icons-material";
 
 interface Hospital {
   hospitalId?: number;
@@ -9,10 +9,10 @@ interface Hospital {
   name?: string;
   estdYear?: number;
   location?: string;
-  about?: string;
-  patientsConsulted?: number;
+  about?: any;
+  specialities?: number;
   procedures?: number;
-  facilities?: number;
+  numberOfBeds?: number;
   doctorsCount?: number;
 }
 
@@ -25,7 +25,7 @@ interface HospitalCardProps {
 const HospitalCard: React.FC<HospitalCardProps> = ({ hospital, index, onEnquireClick }) => {
   const [enquireVisible, setEnquireVisible] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const router = useRouter();
+  const aboutItems = hospital?.about ? hospital?.about : [];
 
   const handleEnquireClick = () => {
     setEnquireVisible(true);
@@ -43,41 +43,55 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital, index, onEnquireC
   return (
     <>
       <Paper elevation={3} style={{ padding: "20px", width: "100%", margin: "0 auto", position: "relative" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <div style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-            <div>
-              <img src={hospital.image} alt={hospital.name} style={{ width: "300px", height: "200px", borderRadius: "10px" }} />
-            </div>
-            <div style={{ float: 'right' }}>
-              <Typography variant="h4">{hospital.name}</Typography>
-              <Typography variant="subtitle1" color="textSecondary" gutterBottom style={{ fontSize: "1.2rem" }}>
-                Location: {hospital.location}
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <img src={hospital.image} alt={hospital.name} style={{ width: "100%", maxWidth: "300px", height: "auto", borderRadius: "10px" }} />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <Typography variant="h4">{hospital.name}</Typography>
+            <div style={{ display: 'flex', alignItems: 'center', gap: "5px" }}>
+              <LocationOnOutlined />
+              <Typography variant="subtitle1" color="textSecondary" style={{ fontSize: "1.2rem" }}>
+                {hospital.location}
               </Typography>
-              <Typography variant="subtitle1" color="textSecondary" gutterBottom style={{ fontSize: "1.2rem" }}>
-                Established Year: {hospital.estdYear}
-              </Typography>
-              <Button variant="contained" color="primary" onClick={handleEnquireClick} style={{ marginTop: "10px" }}>
-                Enquire
-              </Button>
             </div>
-          </div>
-        </div>
+            <Typography variant="subtitle1" color="textSecondary" gutterBottom style={{ fontSize: "1.2rem" }}>
+              Established in: {hospital.estdYear}
+            </Typography>
+            <Button variant="contained" color="primary" onClick={handleEnquireClick} style={{ marginTop: "10px" }}>
+              Enquire Now
+            </Button>
+          </Grid>
+        </Grid>
+
+        
         <hr style={{ margin: "20px 0" }} />
-        {hospital.about && (
+        {hospital?.about && (
           <Collapse in={!expanded}>
-            <Typography variant="body1" style={{ fontSize: "1.2rem" }}>
-              {hospital.about.substring(0, Math.min(200, hospital.about.length))}
+            <Typography variant="body1" style={{ fontSize: "1.0rem" }}>
+              {aboutItems.slice(0, 2).map((item: string, index: number) => (
+                <ul>
+                  <li key={index}>{item}</li>
+                </ul>
+              ) )}
+              {/* {hospital.about.substring(0, Math.min(200, hospital.about.length))} */}
             </Typography>
           </Collapse>
         )}
         {hospital.about && (
           <Collapse in={expanded}>
-            <Typography variant="body1" style={{ fontSize: "1.2rem" }}>
-              {hospital.about}
+            <Typography variant="body1" style={{ fontSize: "1.0rem" }}>
+              {/* {hospital.about} */}
+              <ul>
+              {aboutItems.map((item: string, index: number) => (
+                <li key={index}>{item}</li>
+              ))}
+              </ul>
+              
             </Typography>
           </Collapse>
         )}
-        {hospital.about && hospital.about.length > 200 && (
+        {hospital.about && aboutItems.length > 2 && (
           <div style={{ textAlign: 'center' }}>
             <Button onClick={handleExpandClick}>
               {expanded ? "Show Less" : "Show More"}
@@ -85,12 +99,20 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital, index, onEnquireC
           </div>
         )}
         <hr style={{ margin: "20px 0" }} />
-        <div style={{ display: 'flex', justifyContent: "space-between" }}>
-          <Typography variant="h5">Patients Consulted: {hospital.patientsConsulted}</Typography>
-          <Typography variant="h5">Procedures: {hospital.procedures}</Typography>
-          <Typography variant="h5">Facilities: {hospital.facilities}</Typography>
-          <Typography variant="h5">Doctors Count: {hospital.doctorsCount}</Typography>
-        </div>
+        <Grid container spacing={2}>
+          <Grid item xs={6} sm={3}>
+            <Typography variant="h5">Specialities: {hospital.specialities}</Typography>
+          </Grid>
+          <Grid item xs={6} sm={3}>
+            <Typography variant="h5">Procedures Performed: {hospital.procedures}</Typography>
+          </Grid>
+          <Grid item xs={6} sm={3}>
+            <Typography variant="h5">Number Of Beds: {hospital.numberOfBeds}</Typography>
+          </Grid>
+          <Grid item xs={6} sm={3}>
+            <Typography variant="h5">Doctors : {hospital.doctorsCount}</Typography>
+          </Grid>
+        </Grid>
       </Paper>
       <Dialog open={enquireVisible} onClose={handleClose}>
         <DialogTitle>Enquire about {hospital.name}</DialogTitle>
