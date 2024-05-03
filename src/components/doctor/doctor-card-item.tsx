@@ -8,6 +8,7 @@ import Image from 'next/image'
 import { FC } from 'react'
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
 import PlaceIcon from '@mui/icons-material/Place'
+import Link from 'next/link'
 
 interface Props {
   item: Doctor
@@ -86,7 +87,9 @@ const DoctorCardItem: FC<Props> = ({ item }) => {
             color="primary"
             sx={{ '&:hover': { backgroundColor: 'primary.main', color: 'primary.contrastText' } }}
           >
-            <ArrowForward />
+            <Link href={"/doctors/dr-" + `${item?.pathName}`}>
+              <ArrowForward />
+            </Link>
           </IconButton>
         </Box>
       </Box>
