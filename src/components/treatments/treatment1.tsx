@@ -16,44 +16,66 @@ const IntialTreatment = [
     id: 1,
     name: "Oncology",
     desc: "Oncology is a branch of medicine that deals with the prevention, diagnosis, and treatment of cancer.",
-    subTreatments: ["Chemotherapy", "Radiation Therapy", "Immunotherapy"],
+    subTreatments: ["Breast Cancer", "Chemotherapy", "Radiation Therapy", "Immunotherapy", "Cyberknife Treatment", "Prostate Cancer"],
   },
   {
     id: 2,
     name: "Cardiology",
     desc: "Cardiology is the study and treatment of disorders of the heart and the blood vessels.",
     subTreatments: [
-      "Coronary Angioplasty",
-      "Cardiac Rehabilitation",
-      "Electrophysiology Studies",
+      "Angioplasty",
+      "Mitral Valve Replacement ",
+      "AVR (Aortic Valve Replacement)",
+      "Heart Valve Replacement",
+      "Coronary artery angiography",
+      "ASD/VSD Closure",
     ],
   },
   {
     id: 3,
-    name: "Plastic Surgery",
-    desc: "Plastic surgery is a surgical specialty involving the restoration, reconstruction, or alteration of the human body.",
-    subTreatments: ["Breast Augmentation", "Rhinoplasty", "Liposuction"],
-  },
-  {
-    id: 4,
     name: "Orthopedic",
     desc: "Orthopedic surgery is the branch of surgery concerned with conditions involving the musculoskeletal system.",
     subTreatments: [
-      "Joint Replacement",
+      "ACL Reconstruction",
+      "Knee Replacement Surgery",
+      "Hip Replacement Surgery",
       "Fracture Repair",
       "Arthroscopic Surgery",
+      "Joint Replacement",
     ],
   },
   {
-    id: 5,
+    id: 4,
     name: "Neurology",
     desc: "Neurology is the branch of medicine concerned with the study and treatment of disorders of the nervous system.",
     subTreatments: [
       "Stroke Treatment",
       "Epilepsy Management",
       "Parkinson's Disease Treatment",
+      "Laminectomy",
+      "Deep Brain Stimulation",
+      "Spine Surgery",
     ],
   },
+  {
+    id: 5,
+    name: "Gynecology and Obstetrics",
+    desc: "Gynecology and obstetrics are twin subjects that deal with the female reproductive system.",
+    subTreatments: ["In vitro fertilization (IVF)", "Infertility", "Male Infertility",],
+  },
+  {
+    id: 6,
+    name: "Plastic Surgery",
+    desc: "Plastic surgery is a surgical specialty involving the restoration, reconstruction, or alteration of the human body.",
+    subTreatments: ["Breast Augmentation", "Rhinoplasty", "Liposuction"],
+  },
+  {
+    id: 7,
+    name: "Dental",
+    desc: "Plastic surgery is a surgical specialty involving the restoration, reconstruction, or alteration of the human body.",
+    subTreatments: ["Root Canal Treatment", "Corrective Jaw Surgery", " Jaw Realignment"],
+  },
+
 ];
 
 const TreatmentPage = () => {
