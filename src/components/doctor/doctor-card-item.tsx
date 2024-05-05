@@ -9,12 +9,20 @@ import { FC } from 'react'
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
 import PlaceIcon from '@mui/icons-material/Place'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 interface Props {
   item: Doctor
 }
 
 const DoctorCardItem: FC<Props> = ({ item }) => {
+  const router = useRouter();
+  const handleArrowClick = () => {
+    // Navigate to the doctor's about page with custom data
+    const customData = encodeURIComponent(JSON.stringify(item));
+    router.push(`/doctors/${item?.pathName}`);
+  };
+
   return (
     <Box
       sx={{
@@ -86,10 +94,9 @@ const DoctorCardItem: FC<Props> = ({ item }) => {
           <IconButton
             color="primary"
             sx={{ '&:hover': { backgroundColor: 'primary.main', color: 'primary.contrastText' } }}
+            onClick={handleArrowClick}
           >
-            <Link href={"/doctors/dr-" + `${item?.pathName}`}>
               <ArrowForward />
-            </Link>
           </IconButton>
         </Box>
       </Box>
