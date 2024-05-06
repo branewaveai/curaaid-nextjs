@@ -1,15 +1,13 @@
 import { Doctor } from '@/interfaces/doctor'
 import ArrowForward from '@mui/icons-material/ArrowForward'
-import Box from '@mui/material/Box'
-import IconButton, { iconButtonClasses } from '@mui/material/IconButton'
-import Rating from '@mui/material/Rating'
-import Typography from '@mui/material/Typography'
-import Image from 'next/image'
-import { FC } from 'react'
 import LocalHospitalIcon from '@mui/icons-material/LocalHospital'
 import PlaceIcon from '@mui/icons-material/Place'
-import Link from 'next/link'
+import Box from '@mui/material/Box'
+import IconButton, { iconButtonClasses } from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
+import { FC } from 'react'
 
 interface Props {
   item: Doctor
@@ -20,7 +18,13 @@ const DoctorCardItem: FC<Props> = ({ item }) => {
   const handleArrowClick = () => {
     // Navigate to the doctor's about page with custom data
     const customData = encodeURIComponent(JSON.stringify(item));
-    router.push(`/doctors/${item?.pathName}`);
+    console.log(`${item?.pathName + "#"+item.id}`);
+    // router.push(`/doctors/${item?.pathName + "#"+item.id}`);
+    router.push({
+      pathname: '/doctors/[slug]',
+      query: { slug: item?.pathName ?? '', id: item?.id ?? '' }
+    });
+    // router.push(`/doctors/${item?.pathName ?? ''}#${item?.id ?? ''}`);
   };
 
   return (

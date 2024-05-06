@@ -1,8 +1,9 @@
 import { Footer } from "@/components/footer";
 import Header from "@/components/header/headerstmp";
-import { CurrencyRupee } from "@mui/icons-material";
+import { data } from "@/components/home/popular-course.data";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
+import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import ExperienceIcon from "@mui/icons-material/Star";
 import {
   Accordion,
@@ -22,7 +23,6 @@ import {
 import { useRouter } from "next/router";
 import { useState } from "react";
 import EnquiryForm from "../../components/hospitals/EnquiryForm";
-
 const timeSlots = ["10:00 AM", "11:00 AM", "2:00 PM", "3:00 PM"];
 const styles = {
   containerStyle: {
@@ -47,18 +47,15 @@ const styles = {
 const DoctorPage = () => {
   const router = useRouter();
   const [enquireVisible, setEnquireVisible] = useState(false);
-  const { slug } = router.query;
-  const { DoctorData } = router.query;
+  const { slug, id } = router.query;
+  const doctor = data.find((doctor) => doctor.id === parseInt(id as string));
   const handleEnquireClick = () => {
     setEnquireVisible(true);
-    //onEnquireClick(index);
   };
 
   const handleClose = () => {
     setEnquireVisible(false);
   };
-
-  const doctor: any = DoctorData ? DoctorData : {};
 
   const cardData = [
     { id: 1, title: "Card 1", content: "Atrial Septal Defect (ASD) Repair" },
@@ -74,7 +71,8 @@ const DoctorPage = () => {
       content: "Cardiac Valve Replacement",
     },
   ];
-  console.log(slug);
+  console.log(slug, id);
+
   const faqData = [
     {
       id: 1,
@@ -99,14 +97,10 @@ const DoctorPage = () => {
   ];
 
   return (
-    // <div>
-    //     <h1>Doctor's Profile</h1>
-    //     <p>{slug}</p>
-    // </div>
     <>
       <Header />
       <Grid container spacing={0} justifyContent="center">
-        <Grid item xs={12} sm={10} md={8}>
+        <Grid item xs={12} sm={10} md={9}>
           <Paper
             elevation={3}
             style={{
@@ -115,100 +109,54 @@ const DoctorPage = () => {
               marginTop: 50,
             }}
           >
-            <Card
-              style={{
-                backgroundColor: "white",
-                borderRadius: 16,
-                overflow: "hidden",
-              }}
-            >
-              <Grid container spacing={0}>
-                <Grid item xs={12} sm={3} sx={{ alignItems: "center" }}>
-                  <img
-                    src={"/images/mentors/DipanjanHalder.jpeg"}
-                    alt={"image"}
-                    style={{
-                      width: "100%",
-                      maxWidth: "300px",
-                      padding: "10px",
-                      borderRadius: "10px",
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <CardContent>
-                    <Typography variant="h4"> Dr. Taral </Typography>
-                    <Typography
-                      variant="h6"
-                      color="textSecondary"
-                      paragraph
-                      my={1}
-                    >
-                      Neurolgist
-                    </Typography>
-                    {/* <Typography variant="body2" color="textSecondary" paragraph>
-                    MBBS
-                  </Typography> */}
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "left",
-                        marginBottom: 10,
-                        backgroundColor: "white",
-                      }}
-                    >
-                      <LocalHospitalIcon color="primary" />
-                      <Typography
-                        variant="body1"
-                        color="textSecondary"
-                        style={{ marginLeft: 5 }}
-                      >
-                        Fortis Hospital, Bangalore
-                      </Typography>
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "left",
-                        marginBottom: 10,
-                        backgroundColor: "white",
-                      }}
-                    >
-                      <ExperienceIcon color="primary" />
-                      <Typography
-                        variant="body1"
-                        color="textSecondary"
-                        style={{ marginLeft: 5 }}
-                      >
-                        {`4 years of experience`}
-                      </Typography>
-                    </div>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <CurrencyRupee color="primary" />
-                      <Typography
-                        variant="body1"
-                        color="black"
-                        style={{ marginLeft: 5 }}
-                      >
-                        <b> 2000 </b> for Video consultation
-                      </Typography>
-                    </div>
-                  </CardContent>
-                  <Grid container spacing={2} justifyContent="left">
-                    <Grid item>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleEnquireClick}
-                        style={{ marginTop: "10px" }}
-                      >
-                        Book appointments
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </Grid>
+            <Grid container spacing={0}>
+              <Grid
+                item
+                xs={12}
+                sm={3}
+                sx={{ alignItems: "center", display: "flex" }}
+              >
+                <img
+                  src={doctor?.cover}
+                  alt={"image"}
+                  style={{
+                    width: "100%",
+                    maxWidth: "300px",
+                    height: "300px",
+                    padding: "10px",
+                    borderRadius: "10px",
+                  }}
+                />
               </Grid>
-            </Card>
+              <Grid item xs={12} sm={6} sx={{ alignItems: "center" }}>
+                <Typography variant="h4"> {doctor?.title} </Typography>
+                <Typography variant="h6" color="textSecondary" paragraph my={1}>
+                  {doctor?.speciality}
+                </Typography>
+                <Typography variant="body1" color="textSecondary">
+                  <LocalHospitalIcon color="primary" />
+                  {doctor?.hospital}
+                </Typography>
+
+                <Typography variant="body1" color="textSecondary">
+                  <ExperienceIcon color="primary" />
+                  {`4 years of experience`}
+                </Typography>
+
+                <Typography variant="body1" color="black">
+                  <MonetizationOnOutlinedIcon color="primary" />
+                  <b> {doctor?.price} </b> for Video consultation
+                </Typography>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleEnquireClick}
+                  style={{ marginTop: "10px" }}
+                >
+                  Book appointments
+                </Button>
+              </Grid>
+            </Grid>
           </Paper>
 
           <Grid container spacing={4}>
