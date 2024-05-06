@@ -103,18 +103,13 @@ const DoctorPage = () => {
         <Grid item xs={12} sm={10} md={9}>
           <Paper
             elevation={3}
-            style={{
-              maxWidth: "100%",
-              margin: "auto",
-              marginTop: 50,
-            }}
           >
-            <Grid container spacing={0}>
+            <Grid container spacing={0} justifyContent="center">
               <Grid
                 item
                 xs={12}
                 sm={3}
-                sx={{ alignItems: "center", display: "flex" }}
+                sx={{ alignItems: "center"}}
               >
                 <img
                   src={doctor?.cover}
@@ -128,7 +123,7 @@ const DoctorPage = () => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6} sx={{ alignItems: "center" }}>
+              <Grid item xs={12} sm={6} sx={{ alignItems: "center", marginLeft:'20px' }}>
                 <Typography variant="h4"> {doctor?.title} </Typography>
                 <Typography variant="h6" color="textSecondary" paragraph my={1}>
                   {doctor?.speciality}
@@ -151,7 +146,7 @@ const DoctorPage = () => {
                   variant="contained"
                   color="primary"
                   onClick={handleEnquireClick}
-                  style={{ marginTop: "10px" }}
+                  
                 >
                   Book appointments
                 </Button>
