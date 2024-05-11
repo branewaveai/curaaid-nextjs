@@ -9,4 +9,5 @@ export interface Doctor {
   category: string
   location: string
   hospital: string
+  pathName: string
 }

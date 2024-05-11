@@ -13,6 +13,7 @@ export const data: Array<Doctor> = [
     category: "Beginner",
     location: "Mumbai, India",
     hospital: "Jupiter Hospital, Mumbai",
+    pathName: "dr-harshad-purandare",
   },
   {
     id: 2,
@@ -25,6 +26,7 @@ export const data: Array<Doctor> = [
     category: "Intermediate",
     location: "Mumbai, India",
     hospital: "Jupiter Hospital, Mumbai",
+    pathName: "dr-amit-dhumale",
   },
   {
     id: 3,
@@ -37,6 +39,7 @@ export const data: Array<Doctor> = [
     category: "Intermediate",
     location: "Mumbai, India",
     hospital: "Jupiter Hospital, Mumbai",
+    pathName: "dr-priyank-patel",
   },
   {
     id: 4,
@@ -49,6 +52,7 @@ export const data: Array<Doctor> = [
     category: "Intermediate",
     location: "Mumbai, India",
     hospital: "Jupiter Hospital, Mumbai",
+    pathName: "dr-ashutosh-singh",
   },
   {
     id: 5,
@@ -61,6 +65,7 @@ export const data: Array<Doctor> = [
     category: "Intermediate",
     location: "Mumbai, India",
     hospital: "Jupiter Hospital, Mumbai",
+    pathName: "dr-taral-nagda",
   },
   
 ];
