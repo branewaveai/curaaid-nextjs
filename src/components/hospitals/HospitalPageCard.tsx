@@ -44,10 +44,10 @@ const HospitalCard: React.FC<HospitalCardProps> = ({ hospital, index, onEnquireC
     <>
       <Paper elevation={3} style={{ padding: "20px", width: "100%", margin: "0 auto", position: "relative" }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4} md={4}>
             <img src={hospital.image} alt={hospital.name} style={{ width: "100%", maxWidth: "300px", height: "auto", borderRadius: "10px" }} />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={8} md={8}>
             <Typography variant="h4">{hospital.name}</Typography>
             <div style={{ display: 'flex', alignItems: 'center', gap: "5px" }}>
               <LocationOnOutlined />

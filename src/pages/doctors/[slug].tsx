@@ -76,23 +76,26 @@ const DoctorPage = () => {
   const faqData = [
     {
       id: 1,
-      question: "What is Lorem Ipsum?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      question: "What is the experience of Dr. Swapnil Kapote?",
+      answer:
+        "Dr. Swapnil Kapote has been practicing surgical oncology in Mumbai and has overall 15 years of overall experience. He has an extensive experience in Minimal Invasive surgery in oncology. Dr. Kapote has performed more than 4000 complex cancer surgeries.",
     },
     {
       id: 2,
-      question: "How does it work?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      question: "What is the speciality of Dr. Swapnil Kapote?",
+      answer:
+        "Dr. Swapnil Lapote is Consultant – Onco Surgeon at Jupiter Hospital, Mumbai. ",
     },
     {
       id: 3,
-      question: "Can I customize the settings?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      question: "What are the key achievements of Dr. Swapnil Kapote?",
+      answer:
+        "The Key achievements include - Achieved high expertise in performing minimal invasive cancer surgeries. Performed and assisted more than 4000 complex cancer surgeries.",
     },
     {
       id: 4,
-      question: "Is it free?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      question: "What are the charges for consultation ?",
+      answer: "The charges are USD 30 $",
     },
   ];
 
@@ -101,15 +104,17 @@ const DoctorPage = () => {
       <Header />
       <Grid container spacing={0} justifyContent="center">
         <Grid item xs={12} sm={10} md={9}>
-          <Paper
-            elevation={3}
-          >
+          <Paper elevation={3}>
             <Grid container spacing={0} justifyContent="center">
               <Grid
                 item
                 xs={12}
                 sm={3}
-                sx={{ alignItems: "center"}}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
               >
                 <img
                   src={doctor?.cover}
@@ -123,33 +128,84 @@ const DoctorPage = () => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} sm={6} sx={{ alignItems: "center", marginLeft:'20px' }}>
-                <Typography variant="h4"> {doctor?.title} </Typography>
-                <Typography variant="h6" color="textSecondary" paragraph my={1}>
-                  {doctor?.speciality}
-                </Typography>
-                <Typography variant="body1" color="textSecondary">
-                  <LocalHospitalIcon color="primary" />
-                  {doctor?.hospital}
-                </Typography>
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                spacing={1}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginLeft: "20px",
+                }}
+              >
+                <Grid container spacing={1}>
+                  <Grid item xs={12}>
+                    <Typography variant="h4"> {doctor?.title} </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography
+                      variant="h6"
+                      color="textSecondary"
+                      paragraph
+                      my={1}
+                    >
+                      {doctor?.speciality}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography
+                      variant="body1"
+                      color="textSecondary"
+                      sx={{ display: "flex", alignItems: "center" }}
+                    >
+                      <LocalHospitalIcon
+                        color="primary"
+                        sx={{ marginRight: 0.2 }}
+                      />
+                      {doctor?.hospital}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography
+                      variant="body1"
+                      color="textSecondary"
+                      sx={{ display: "flex", alignItems: "center" }}
+                    >
+                      <ExperienceIcon
+                        color="primary"
+                        sx={{ marginRight: 0.2 }}
+                      />
+                      {`4 years of experience`}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography
+                      variant="body1"
+                      color="textSecondary"
+                      sx={{ display: "flex", alignItems: "center" }}
+                    >
+                      <MonetizationOnOutlinedIcon
+                        color="primary"
+                        sx={{ marginRight: 0.2 }}
+                      />
+                      <span style={{ marginRight: "0.5em" }}>
+                        <b>{doctor?.price}</b> USD
+                      </span>
+                      Consultation Fee
+                    </Typography>
+                  </Grid>
 
-                <Typography variant="body1" color="textSecondary">
-                  <ExperienceIcon color="primary" />
-                  {`4 years of experience`}
-                </Typography>
-
-                <Typography variant="body1" color="black">
-                  <MonetizationOnOutlinedIcon color="primary" />
-                  <b> {doctor?.price} </b> for Video consultation
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleEnquireClick}
-                  
-                >
-                  Book appointments
-                </Button>
+                  <Grid item xs={12} mt={2} mb={1}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleEnquireClick}
+                    >
+                      Book Appointment
+                    </Button>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Paper>
@@ -176,41 +232,28 @@ const DoctorPage = () => {
                   About Doc
                 </Typography>
               </Paper>
-              <div style={styles.textContainerStyle}>
-                <Typography variant="subtitle1">
-                  A practising HPB & Liver transplant Surgeon in Bangalore, I
-                  have pursued my M.B.B.S from Sri Devaraj Urs Medical College,
-                  Kolar, and Masters in Surgery from Bangalore Medical College
-                  and Research Institute, Bangalore. Following which I completed
-                  my Post Doctoral Clinical Fellowship in HPB Surgery and Liver
-                  Transplant from H.C.G Oncology hospitals, Bangalore. I have
-                  additional training and fellowships in Robotic Surgery,
-                  Laparoscopic and endoscopic surgery as well from AIIMS, New
-                  Delhi, D.Y Patil Medical College, Mumbai and CEMAST, Mumbai. I
-                  have always been very keen in developing innovative solutions
-                  to the academic hurdles faced by medical and other health
-                  students, the beginning of which occurred as an academy for
-                  medical students to improve and hone their approach towards
-                  practical and applied medical practice. This gave birth to the
-                  very valued and unique Docfort Meducation in 2017 and
-                  performing well so far, the academy boasts three new courses
-                  in the medical domain including a Fellowship in Medico-social
-                  Journalism (F.M.S.J), Clinical Research Enhanced Supplemental
-                  Training (CREST) and a Fellowship in Ambulatory Medicine
-                  (F.D.C.P). In addition to this, Docfort has successfully
-                  certified over 3000 students in various workshops involving
-                  hands on training programs, research modules, screening camps,
-                  discussion forums and paper presentations. Originally from a
-                  very modest economical background, it was extremely difficult
-                  for me to begin this venture, given its technical and allied
-                  needs. But with the help of a persistent vision, a strong
-                  family support and an amazing peer circle, I have successfully
-                  been able to carry on with the desired operations and more in
-                  the last 4 years. I believe in hyper-personalising academics
-                  for interested medics, thereby enabling them to bring out the
-                  best of academic acumen.
-                </Typography>
-              </div>
+
+              <Typography variant="body1" color="#000000" padding={1}>
+                Dr. Swapnil Kapote has been practicing surgical oncology in
+                Mumbai and has overall 15 years of overall experience. He has an
+                extensive experience in Minimal Invasive surgery in oncology.
+                Dr. Kapote has performed more than 4000 complex cancer
+                surgeries.
+              </Typography>
+              <Typography variant="body1" color="#000000" padding={1}>
+                He is actively involved in various aspects of patient management
+                for different types of cancers which include initial workup,
+                decision making vis-à-vis treatment plan and implementation of
+                those decisions.
+              </Typography>
+              <Typography variant="body1" color="#000000" padding={1}>
+                He Is experienced in decision making regarding additional
+                treatment modalities like radiotherapy, chemotherapy and
+                intervention radiology which has helped gain appropriate and
+                correct knowledge on these important facets of oncological
+                practice.
+              </Typography>
+
               <Paper
                 elevation={3}
                 sx={{
@@ -231,10 +274,14 @@ const DoctorPage = () => {
                   <Grid item key={card.id} xs={12} sm={6} md={4}>
                     <Card
                       variant="contained"
-                      style={{ backgroundColor: "#f5f5f5" }}
+                      style={{
+                        backgroundColor: "#D3D3D3",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
                     >
                       <CardContent>
-                        <Typography variant="subtitle1" color="text.primary">
+                        <Typography variant="body1" color="text.primary">
                           {card.content}
                         </Typography>
                       </CardContent>
@@ -258,12 +305,13 @@ const DoctorPage = () => {
                     alignItems: "center",
                     padding: "10px",
                     width: "100%",
-                    backgroundColor: "#2196F3",
+                    backgroundColor: "#68F19F",
                     marginTop: "10px",
+                    marginBottom: "10px",
                     marginLeft: "0px",
                   }}
                 >
-                  <Typography variant="h5" color="white">
+                  <Typography variant="h5" color="#000000">
                     FAQs
                   </Typography>
                 </Paper>
