@@ -1,16 +1,22 @@
-import React, { FC } from 'react'
-import Image from 'next/image'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import Image from 'next/image'
+import { FC } from 'react'
 
 import { Mentor } from '@/interfaces/mentor'
 import PlaceIcon from '@mui/icons-material/Place'
+import { useRouter } from 'next/router'
 
 interface Props {
   item: Mentor
 }
 
 const MentorCardItem: FC<Props> = ({ item }) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push('/hospitals');
+    
+  };
   return (
     <Box
       sx={{
@@ -37,10 +43,11 @@ const MentorCardItem: FC<Props> = ({ item }) => {
             height: 200,
             mb: 2,
           }}
+          onClick={handleClick}
         >
           <Image src={item.photo as string} width={570} height={427} alt={'Mentor ' + item.id} />
         </Box>
-        <Box sx={{ mb: 2 }}>
+        <Box sx={{ mb: 2 }} onClick={handleClick}>
           <Typography component="h2" variant="h4" sx={{ fontSize: '1.4rem' }}>
             {item.name}
           </Typography>
