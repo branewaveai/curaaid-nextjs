@@ -1,5 +1,6 @@
 import { Footer } from "@/components/footer";
 import Header from "@/components/header/headerstmp";
+import EnquiryForm from "@/components/home/enquiryform";
 import { data } from "@/components/home/popular-course.data";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
@@ -15,14 +16,12 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-  DialogTitle,
   Grid,
   Paper,
-  Typography,
+  Typography
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import EnquiryForm from "../../components/hospitals/EnquiryForm";
 const timeSlots = ["10:00 AM", "11:00 AM", "2:00 PM", "3:00 PM"];
 const styles = {
   containerStyle: {
@@ -176,7 +175,7 @@ const DoctorPage = () => {
                         color="primary"
                         sx={{ marginRight: 0.2 }}
                       />
-                      {`4 years of experience`}
+                      {`12 years of experience`}
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
@@ -337,9 +336,9 @@ const DoctorPage = () => {
         </Grid>
       </Grid>
       <Dialog open={enquireVisible} onClose={handleClose}>
-        <DialogTitle>Book Appointment with {slug}</DialogTitle>
+        {/* <DialogTitle>Book Appointment with </DialogTitle> */}
         <DialogContent>
-          <EnquiryForm hospitalId={"1"} onClose={handleClose} />
+          <EnquiryForm />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>

@@ -26,6 +26,7 @@ const DoctorCardItem: FC<Props> = ({ item }) => {
     });
     // router.push(`/doctors/${item?.pathName ?? ''}#${item?.id ?? ''}`);
   };
+  
 
   return (
     <Box
@@ -56,11 +57,13 @@ const DoctorCardItem: FC<Props> = ({ item }) => {
             overflow: 'hidden',
             borderRadius: 3,
             mb: 2,
+            
           }}
+          onClick={handleArrowClick}
         >
           <Image src={item.cover} width={760} height={760} alt={'Doctor ' + item.id} />
         </Box>
-        <Box sx={{ mb: 1 }}>
+        <Box sx={{ mb: 1 }} onClick={handleArrowClick}>
           <Typography component="h2" variant="h5" sx={{ height: 26, overflow: 'hidden', fontSize: '1.2rem' }}>
             {item.title}
           </Typography>
