@@ -75,20 +75,6 @@ const DoctorPage = () => {
     },
   ];
   var doctor = data1.find((doctor) => doctor.id === parseInt("1" as string));
-  const cardData = [
-    { id: 1, title: "Card 1", content: "Atrial Septal Defect (ASD) Repair" },
-    { id: 2, title: "Card 2", content: "Bentall Procedure" },
-    {
-      id: 3,
-      title: "Card 3",
-      content: "Coronary Artery Bypass Grafting (CABG)",
-    },
-    {
-      id: 4,
-      title: "Card 4",
-      content: "Cardiac Valve Replacement",
-    },
-  ];
   console.log(slug, id);
 
   const faqData = [

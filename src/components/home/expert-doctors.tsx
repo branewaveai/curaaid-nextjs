@@ -11,7 +11,7 @@ import Slider, { Settings } from 'react-slick'
 
 // import { CourseCardItem } from '@/components/course'
 import { DoctorCardItem } from '../doctor'
-import { data } from './popular-course.data'
+import { data } from './doctor.data'
 
 interface SliderArrowArrow {
   onClick?: () => void

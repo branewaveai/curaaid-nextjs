@@ -1,7 +1,7 @@
 import { Footer } from "@/components/footer";
 import Header from "@/components/header/headerstmp";
+import { data as doctors } from "@/components/home/doctor.data";
 import EnquiryForm from "@/components/home/enquiryform";
-import { data as doctors } from "@/components/home/popular-course.data";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import ExperienceIcon from "@mui/icons-material/Star";

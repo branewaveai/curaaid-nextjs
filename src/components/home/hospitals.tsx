@@ -9,7 +9,7 @@ import { styled, useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { FC } from 'react'
 import Slider, { Settings } from 'react-slick'
-import { data } from './mentors.data'
+import { data } from './hospitals.data'
 
 interface SliderArrowArrow {
   onClick?: () => void
