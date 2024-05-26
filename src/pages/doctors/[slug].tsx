@@ -1,7 +1,6 @@
 import { Footer } from "@/components/footer";
 import Header from "@/components/header/headerstmp";
 import EnquiryForm from "@/components/home/enquiryform";
-import { data } from "@/components/home/popular-course.data";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
@@ -18,7 +17,7 @@ import {
   DialogContent,
   Grid,
   Paper,
-  Typography
+  Typography,
 } from "@mui/material";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -47,7 +46,7 @@ const DoctorPage = () => {
   const router = useRouter();
   const [enquireVisible, setEnquireVisible] = useState(false);
   const { slug, id } = router.query;
-  const doctor = data.find((doctor) => doctor.id === parseInt(id as string));
+  //const doctor = data.find((doctor) => doctor.id === parseInt(id as string));
   const handleEnquireClick = () => {
     setEnquireVisible(true);
   };
@@ -55,7 +54,27 @@ const DoctorPage = () => {
   const handleClose = () => {
     setEnquireVisible(false);
   };
-
+  const data1 = [
+    {
+      id: 1,
+      cover: "/images/mentors/mangesh.png",
+      title: "Dr. Mangesh Kamath",
+      About_doc: [
+        "Dr. Swapnil Kapote has been practicing surgical oncology in Mumbai and has overall 15 years of overall experience. He has an extensive experience in Minimal Invasive surgery in oncology. Dr. Kapote has performed more than 4000 complex cancer surgeries.",
+        "He is actively involved in various aspects of patient management for different types of cancers which include initial workup, decision making vis-à-vis treatment plan and implementation of those decisions.",
+        "He Is experienced in decision making regarding additional treatment modalities like radiotherapy, chemotherapy and intervention radiology which has helped gain appropriate and correct knowledge on these important facets of oncological practice.",
+      ],
+      Experience: "12",
+      speciality: "Oncology",
+      rating: 5,
+      price: 30,
+      location: "Bangalore, India",
+      hospital: "Fortis Hospital, Bangalore",
+      Procedures:
+        "Atrial Septal Defect (ASD) Repair, Bentall Procedure, Coronary Artery Bypass Grafting (CABG), Cardiac Valve Replacement",
+    },
+  ];
+  var doctor = data1.find((doctor) => doctor.id === parseInt("1" as string));
   const cardData = [
     { id: 1, title: "Card 1", content: "Atrial Septal Defect (ASD) Repair" },
     { id: 2, title: "Card 2", content: "Bentall Procedure" },
@@ -175,7 +194,7 @@ const DoctorPage = () => {
                         color="primary"
                         sx={{ marginRight: 0.2 }}
                       />
-                      {`12 years of experience`}
+                      {doctor?.Experience} {` years of experience`}
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
@@ -232,26 +251,15 @@ const DoctorPage = () => {
                 </Typography>
               </Paper>
 
-              <Typography variant="body1" color="#000000" padding={1}>
-                Dr. Swapnil Kapote has been practicing surgical oncology in
-                Mumbai and has overall 15 years of overall experience. He has an
-                extensive experience in Minimal Invasive surgery in oncology.
-                Dr. Kapote has performed more than 4000 complex cancer
-                surgeries.
-              </Typography>
-              <Typography variant="body1" color="#000000" padding={1}>
-                He is actively involved in various aspects of patient management
-                for different types of cancers which include initial workup,
-                decision making vis-à-vis treatment plan and implementation of
-                those decisions.
-              </Typography>
-              <Typography variant="body1" color="#000000" padding={1}>
-                He Is experienced in decision making regarding additional
-                treatment modalities like radiotherapy, chemotherapy and
-                intervention radiology which has helped gain appropriate and
-                correct knowledge on these important facets of oncological
-                practice.
-              </Typography>
+              <ul style={{ paddingLeft: "20px" }}>
+                {doctor?.About_doc.map((paragraph, index) => (
+                  <li key={index}>
+                    <Typography variant="body1" color="#000000" padding={1}>
+                      {paragraph}
+                    </Typography>
+                  </li>
+                ))}
+              </ul>
 
               <Paper
                 elevation={3}
@@ -268,9 +276,10 @@ const DoctorPage = () => {
                   Procedures
                 </Typography>
               </Paper>
+
               <Grid container rowSpacing={1} columnSpacing={2} my={1}>
-                {cardData.map((card) => (
-                  <Grid item key={card.id} xs={12} sm={6} md={4}>
+                {doctor?.Procedures.split(",").map((procedure, index) => (
+                  <Grid item key={index} xs={12} sm={6} md={4}>
                     <Card
                       style={{
                         backgroundColor: "#D3D3D3",
@@ -280,16 +289,16 @@ const DoctorPage = () => {
                     >
                       <CardContent>
                         <Typography variant="body1" color="text.primary">
-                          {card.content}
+                          {procedure.trim()}
                         </Typography>
                       </CardContent>
                     </Card>
                   </Grid>
                 ))}
               </Grid>
+
               <Grid
                 style={{
-                  // marginTop: "50px",
                   marginLeft: "0px",
                   marginRight: "auto",
                   width: "100%",
