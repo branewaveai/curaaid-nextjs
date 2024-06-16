@@ -1,5 +1,5 @@
 import { Footer } from "@/components/footer";
-import Header from "@/components/header/headerstmp";
+import Header from "@/components/header/header";
 import { data } from "@/components/home/popular-course.data";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";

@@ -1,21 +1,21 @@
-import React, { useState } from "react";
-import {
-  Grid,
-  Typography,
-  Paper,
-  Button,
-  Dialog,
-  DialogContent,
-  DialogActions,
-} from "@mui/material";
-import Header from "@/components/header/headerstmp";
+import { Footer } from "@/components/footer";
+import Header from "@/components/header/header";
+import EnquiryForm from "@/components/home/enquiryform";
+import { data as doctors } from "@/components/home/popular-course.data";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import ExperienceIcon from "@mui/icons-material/Star";
-import { data as doctors } from "@/components/home/popular-course.data";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { useRouter } from "next/router";
-import { Footer } from "@/components/footer";
-import EnquiryForm from "@/components/home/enquiryform";
+import { useState } from "react";
 
 export interface Doctor {
   id: number | string;
