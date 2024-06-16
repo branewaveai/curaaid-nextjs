@@ -2,6 +2,18 @@ import type { Testimonial } from '@/interfaces/testimonial'
 
 export const data: Array<Testimonial> = [
   {
+    id: "kHptwwkhBx0",
+    title: 'Patient from Bangladesh | Migraine treatment in India',
+    content:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    user: {
+      id: 1,
+      name: 'Diana Jordan',
+      professional: 'SEO Expert',
+      photo: '4.jpg',
+    },
+  },
+  {
     id: "YzPW2e3DruI",
     title: 'Patient from Nigeria | Complex Tracheostomy treatment in India',
     content:
