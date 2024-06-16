@@ -1,6 +1,6 @@
 import Footer from "@/components/footer/footer";
-import Header from "@/components/header/headerstmp";
-import { Box,  Typography } from "@mui/material";
+import Header from "@/components/header/header";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const TermsConditionsPage: React.FC = () => {

@@ -1,5 +1,5 @@
 import Footer from "@/components/footer/footer";
-import Header from "@/components/header/headerstmp";
+import Header from "@/components/header/header";
 import { Box, Button, Typography } from "@mui/material";
 import Link from "next/link";
 import { useRouter } from "next/router";

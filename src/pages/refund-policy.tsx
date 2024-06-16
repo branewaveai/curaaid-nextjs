@@ -1,9 +1,6 @@
 import Footer from "@/components/footer/footer";
-import Header from "@/components/header/headerstmp";
-import { Box, Button, Typography } from "@mui/material";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Script from "next/script";
+import Header from "@/components/header/header";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
 const RefundPolicyPage: React.FC = () => {

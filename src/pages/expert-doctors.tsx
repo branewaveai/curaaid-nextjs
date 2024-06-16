@@ -1,21 +1,23 @@
-import React, { useState } from "react";
-import {
-  Grid,
-  Typography,
-  Paper,
-  Button,
-  Dialog,
-  DialogContent,
-  DialogActions,
-} from "@mui/material";
-import Header from "@/components/header/headerstmp";
+import { Footer } from "@/components/footer";
+import Header from "@/components/header/header";
+import EnquiryForm from "@/components/home/enquiryform";
+import { data as doctors } from "@/components/home/popular-course.data";
+import { RootState } from "@/redux/store";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlined";
 import ExperienceIcon from "@mui/icons-material/Star";
-import { data as doctors } from "@/components/home/popular-course.data";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { useRouter } from "next/router";
-import { Footer } from "@/components/footer";
-import EnquiryForm from "@/components/home/enquiryform";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export interface Doctor {
   id: number | string;
@@ -41,7 +43,10 @@ const DoctorListPage = () => {
   const handleClose = () => {
     setEnquireVisible(false);
   };
+  const currency = useSelector((state: RootState) => state.currency.currency);
+  const exchangeRate = useSelector((state: RootState) => state.currency.exchangeRate);
 
+  // const convertedFee = (item?.price * exchangeRate).toFixed(0);
   return (
     <>
       <Header />
@@ -142,7 +147,7 @@ const DoctorListPage = () => {
                               sx={{ marginRight: 0.2 }}
                             />
                             <span style={{ marginRight: "0.5em" }}>
-                              <b>{doctor?.price}</b> USD
+                              <b>{(doctor?.price * exchangeRate).toFixed(0) ?? doctor?.price}</b> {currency ?? "USD"}
                             </span>
                             Consultation Fee
                           </Typography>
