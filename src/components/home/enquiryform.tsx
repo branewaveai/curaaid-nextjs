@@ -24,7 +24,11 @@ interface FormData {
 }
 
 var countries = [
+  { code: "+61", label: "Australia" },
   { code: "+251", label: "Ethiopia" },
+  { code : "+679", label: "Fiji" },
+  { code: "+996", label: "Kyrgyzstan" },
+  { code: "+998", label: "Uzbekistan" },
   { code: "+233", label: "Ghana" },
   { code: "+91", label: "India" },
   { code: "+254", label: "Kenya" },
