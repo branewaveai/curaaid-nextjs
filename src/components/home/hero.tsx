@@ -284,7 +284,7 @@ const HomeHero: FC = () => {
         <Box sx={{ boxShadow: 2, py: 4, px: 7, borderRadius: 4 }}>
           <Grid container spacing={2}>
             {exps.map((item) => (
-              <Grid key={item.value} item xs={12} md={4}>
+              <Grid key={item.value} item xs={4} md={4}>
                 <ExpItem item={item} />
               </Grid>
             ))}
