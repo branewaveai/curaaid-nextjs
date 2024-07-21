@@ -251,7 +251,6 @@ const EnquiryForm: React.FC = () => {
             onChange={handleChange}
             variant="outlined"
             margin="normal"
-            required
             fullWidth
             type="email"
           />
